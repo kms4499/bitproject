@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+{% load static %}
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>law-bot</title>
+
+	<link rel="stylesheet" href="{% static '/css/home/bootstrap.min.css' %}" type="text/css">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
+
+</head>
+
+<body marginwidth="0" marginheight="0">
+
+<!--header-->
+<nav class="navbar sticky-top navbar-light bg-light ">
+	<a class="navbar-brand ml-5" href="#"> <img
+			src="{% static 'img/KakaoTalk_20210521_092747994.png' %}" width="70" height="70"
+			class="d-inline-block align-bottom" alt="icon">
+		LAW-BOT
+	</a>
+
+	<ul class="nav justify-content-end mt-3" style="font-size: 16px;">
+		<li class="nav-item">
+			<a class="nav-link mt-3 px-sm-3" href="#">판결문</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link mt-3 px-sm-3" href="#">변호사</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link mt-3" href="/community/">커뮤니티</a>
+		</li>
+	</ul>
+
+	<ul class="nav justify-content-end mt-4">
+
+		<!-- Button trigger modal -->
+		<a href="#" class="btn btn-primary p-0 mt-3 pt-1" data-toggle="modal" data-target="#exampleModalCenter" style="font-size: 13px;">
+			로그인
+		</a>
+
+		<li class="nav-item">
+			<a class="nav-link mr-5 mt-3" href="#">/회원가입</a>
+		</li>
+	</ul>
+</nav>
+
+<!-- login -->
+		<div class="modal fade" id="exampleModalCenter" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header" style="background-color: #FFCE50;">
+						<h5 class="col-md-12 text-center" style="margin-left: 125px;">로그인</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label style="font-size: 15px;">이메일</label>
+							<input type="email" name="이메일"  class="form-control1" id="email" aria-describedby="emailHelp" placeholder="Email">
+						</div>
+						<div class="form-group">
+							<label style="font-size: 15px;">비밀번호</label>
+							<input type="password" name="비밀번호" id="password"  class="form-control1" aria-describedby="emailHelp" placeholder="Password">
+						</div>
+
+						<div class="row align-items-center remember" style="margin-right: 10px;">
+							<input type="checkbox">아이디 저장
+						</div>
+						<div></div>
+						<div class="row align-items-center remember" style="margin-right: 20px;">
+							<input type="checkbox">로그인 상태유지
+						</div></br><br>
+
+						<div class="form-group" style="width: 80px; margin: 0 auto;">
+							<button type="button" class="btn btn-primary1">로그인</button>
+					</div>
+						<div class="text-center" style="width: 150px; margin: 0 auto;">
+						<a href="#" class="login"
+						   onclick="location.href='file:///C:/%EC%88%98%EC%97%85%EC%9E%90%EB%A3%8C/law/public/SignUp-Choice/Signup_Choice.html'">회원가입</a>
+						<span style="font-size: 5px;">|</span>
+						<a href="#" class="login">아이디/비번 찾기</a>
+						</div>
+						</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" style="width: 280px; margin: 0 auto; ">
+							<img src="{% static 'img/naver-login.png' %}" width="250px;" height="40px">
+						</button>
+						<button type="button" class="btn btn-primary" style="width: 280px; margin: 0 auto; ">
+							<img src="{% static 'img/kakao-login.png' %}" width="250px;" height="40px">
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			$(document).on('click', '[data-toggle="lightbox"]', function(event) {
+				event.preventDefault();
+				$(this).ekkoLightbox();
+			});
+		</script>
+
+<!--first page-->
+<div class="img">
+	<video autoplay loop muted poster="aaa" preload="bbb" class="phone">
+  <source src="{% static 'img/video.mp4' %}" type="video/mp4">
+</video>
+	<div class="content">
+		<div class="input-group flex-nowrap">
+			<input placeholder="저와의 대화를 통해 고민을 해결하세요" type="text" id="chat"
+				   class="form-control text-center" style="background-color:rgba( 0, 0, 0, 0 )" >
+			<button type="button" class="btn btn-primary">
+				<img src="{% static 'img/돋보기-icon.png' %}" class="iconimg">
+			</button>
+			<button type="button" class="btn btn-primary" >
+				<img src="{% static 'img/음성-icon.png' %}" width=30px height=40px>
+			</button>
+
+		</div>
+	</div>
+</div>
+
+<!--second page-->
+<div class="img1">
+	<div class="container container-xl">
+
+		<div class="box" >
+			<button type="button" class="btn btn-secondary btn-block">
+				<img src="{% static 'img/판결문-icon.png' %}" class="boxicon">
+				<h5 style="padding-top: 20px;">판결문</h5>
+				판결문들을 통해 질문을 어느정도 해결할 수 있어요.
+			</button>
+		</div>
+
+		<div class="box">
+			<button type="button" class="btn btn-secondary btn-block">
+				<img src="{% static 'img/변호사-icon.png' %}" class="boxicon">
+				<h5 style="padding-top: 20px;">변호사</h5>
+				궁금하신 분야의 변호사들을 확인해보세요.
+			</button>
+		</div>
+		<div class="box">
+			<span class="btn-secondary btn-block" >
+				<img src="{% static 'img/커뮤니티-icon.png' %}" class="boxicon">
+				<h5 style="padding-top: 20px;">커뮤니티</h5>
+				마음 놓고 편안하게 사람들과 이야기를 나눠요.
+			</span>
+		</div>
+
+	</div>
+</div>
+
+<!--third page-->
+<div class="img2">
+
+</div>
+
+</body>
+</html>
