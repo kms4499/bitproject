@@ -1,11 +1,14 @@
 from django import forms
 from .models import User
+from django.contrib.auth.hashers import check_password
 from django.contrib.auth.forms import UserCreationForm
+from .choice import *
 
 def phone_number_validator(value):
     if len(str(value)) != 10:
         raise forms.ValidationError('정확한 핸드폰 번호를 입력해주세요.')
 
+#변호사 회원가입 폼
 class LawRegisterForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super(LawRegisterForm, self).__init__(*args, **kwargs)
@@ -19,6 +22,36 @@ class LawRegisterForm(UserCreationForm):
         self.fields['password1'].widget.attrs.update({
             'class': 'form-control',
         })
+        self.fields['password2'].label = '비밀번호 확인'
+        self.fields['password2'].widget.attrs.update({
+            'class': 'form-control',
+            'placeholder': '비밀번호를 다시 입력해주세요.',
+        })
+
+        self.fields['email'].label = '이메일'
+        self.fields['email'].widget.attrs.update({
+            'class': 'form-control',
+        })
+
+        self.fields['name'].label = '이름'
+        self.fields['name'].widget.attrs.update({
+            'class': 'form-control',
+            'placeholder': "아이디, 비밀번호 찾기에 이용됩니다.",
+        })
+
+        self.fields['phone_number'].label = '핸드폰번호'
+        self.fields['phone_number'].validators = [phone_number_validator]
+        self.fields['phone_number'].widget.attrs.update({
+            'class': 'form-control',
+            'placeholder': "'-'를 제외한 숫자로 입력해주세요",
+        })
+
+        # self.fields['department'].label = '가입유형'
+        # self.fields['department'].widget.attrs.update({
+        #     'class' : 'form-control',
+        #     'placeholder' : "정확히 입력해주세요",
+        # })
+
 
     class Meta:
         model = User
@@ -32,7 +65,68 @@ class LawRegisterForm(UserCreationForm):
 
         return user
 
+#일반 회원가입 폼
+class RegisterForm(UserCreationForm):
+    department = forms.ChoiceField(choices=DEPARTMENT_CHOICES, label='가입유형', widget=forms.Select(
+        attrs={'class': 'form-control'}),
+    )
 
+    def __int__(self, *args, **kwargs):
+        super(RegisterForm, self).__init__(*args, **kwargs)
+
+        self.fields['user_id'].label = '아이디'
+        self.fields['user_id'].widget.attrs.update({
+            'class': 'form-control col-sm-10',
+            'autofocus': False,
+
+        })
+        self.fields['password1'].label = '비밀번호'
+        self.fields['password1'].widget.attrs.update({
+            'class': 'form-control',
+
+        })
+        self.fields['password2'].label = '비밀번호 확인'
+        self.fields['password2'].widget.attrs.update({
+            'class': 'form-control',
+
+        })
+        self.fields['email'].label = '이메일'
+        self.fields['email'].widget.attrs.update({
+            'class': 'form-control',
+            # 'placeholder': '회원가입 후 입력하신 메일로 본인인증 메일이 전송됩니다.',
+        })
+        self.fields['name'].label = '이름'
+        self.fields['name'].widget.attrs.update({
+            'class': 'form-control',
+
+        })
+        self.fields['phone_number'].label = '핸드폰번호'
+        self.fields['phone_number'].validators = [phone_number_validator]
+        self.fields['phone_number'].widget.attrs.update({
+            'class': 'form-control',
+
+        })
+
+        # self.fields['department'].label = '가입유형'
+        # self.fields['department'].widget.attrs.update({
+        #     'class' : 'form-control',
+        #     'placeholder' : "정확히 입력해주세요",
+        # })
+
+    class Meta:
+        model = User
+        fields = ['user_id', 'password1', 'password2', 'email', 'name', 'phone_number', 'department']
+
+    def save(self, commit=True):
+        user = super(RegisterForm, self).save(commit=False)
+        user.level = '3'
+        user.is_active = False
+        user.save()
+
+        return user
+
+
+# 로그인, 로그아웃 구현 , 06월 30일 현재 띄우는 모습까지는 출력 로그인 할때 생기는 상황들은 따로 코딩이 필요
 class LoginForm(forms.Form):
     user_id = forms.CharField(
         widget=forms.TextInput(
@@ -62,3 +156,24 @@ class LoginForm(forms.Form):
 
             if not check_password(password, user.password):
                 self.add_error('password', '비밀번호가 틀렸습니다.')
+
+class RecoveryIdForm(forms.Form):
+    name = forms.CharField(widget=forms.TextInput,)
+    email = forms.EmailField(widget=forms.EmailInput,)
+
+    class Meta:
+        fields = ['name', 'email']
+
+    def __init__(self, *args, **kwargs):
+        super(RecoveryIdForm, self).__init__(*args, **kwargs)
+        self.fields['name'].label = '이름'
+        self.fields['name'].widget.attrs.update({
+            'class': 'form-control',
+            'id': 'form_name',
+        })
+        self.fields['email'].label = '이메일'
+        self.fields['email'].widget.attrs.update({
+            'class': 'form-control',
+            'id': 'form_email'
+        })
+
