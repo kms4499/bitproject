@@ -4,6 +4,7 @@ from django.contrib.auth.hashers import check_password
 from django.contrib.auth.forms import UserCreationForm
 from .choice import *
 
+
 def phone_number_validator(value):
     if len(str(value)) != 10:
         raise forms.ValidationError('정확한 핸드폰 번호를 입력해주세요.')
@@ -67,9 +68,9 @@ class LawRegisterForm(UserCreationForm):
 
 #일반 회원가입 폼
 class RegisterForm(UserCreationForm):
-    department = forms.ChoiceField(choices=DEPARTMENT_CHOICES, label='가입유형', widget=forms.Select(
-        attrs={'class': 'form-control'}),
-    )
+    # department = forms.ChoiceField(choices=DEPARTMENT_CHOICES, label='가입유형', widget=forms.Select(
+    #     attrs={'class': 'form-control'}),
+    # )
 
     def __int__(self, *args, **kwargs):
         super(RegisterForm, self).__init__(*args, **kwargs)
@@ -177,3 +178,40 @@ class RecoveryIdForm(forms.Form):
             'id': 'form_email'
         })
 
+class RecoveryPwForm(forms.Form):
+    name = forms.CharField(widget=forms.TextInput,)
+    email = forms.EmailField(widget=forms.EmailInput,)
+    user_id = forms.CharField(widget=forms.TextInput,)
+
+    class Meta:
+        fields = ['name', 'email', 'user_id']
+
+    def __init__(self, *args, **kwargs):
+        super(RecoveryPwForm, self).__init__(*args, **kwargs)
+        self.fields['name'].label = '이름'
+        self.fields['name'].widget.attrs.update({
+            'class': 'form-control',
+            'id': 'pw_form_name',
+        })
+        self.fields['email'].label = '이메일'
+        self.fields['email'].widget.attrs.update({
+            'class': 'form-control',
+            'id': 'pw_form_email',
+        })
+        self.fields['user_id'].label = '아이디'
+        self.fields['user_id'].widget.attrs.update({
+            'class': 'form-control',
+            'id': 'pw_form_id',
+        })
+
+# class CustomSetPasswordForm(SetPasswordForm):
+#     def __init__(self, *args, **kwargs):
+#         super(CustomSetPasswordForm, self).__init__(*args, **kwargs)
+#         self.fields['new_password1'].label = '새 비밀번호'
+#         self.fields['new_password1'].widget.attrs.update({
+#             'class': 'form-control',
+#         })
+#         self.fields['new_password2'].label = '새 비밀번호 확인'
+#         self.fields['new_password2'].widget.attrs.update({
+#             'class': 'form-control',
+#         })

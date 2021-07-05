@@ -20,6 +20,8 @@ from django.views.generic import View
 import json
 from django.core.serializers.json import DjangoJSONEncoder
 
+from .forms import RecoveryPwForm
+
 
 @method_decorator(logout_message_required, name='dispatch')
 class AgreementView(View):
@@ -96,12 +98,12 @@ class homeview(TemplateView):
 @method_decorator(logout_message_required, name='dispatch')
 class RecoveryIdView(View):
     template_name = 'users/recovery_id.html'
-    form = RecoveryIdForm
+    recovery_id = RecoveryIdForm
 
     def get(self, request):
         if request.method=='GET':
             form_id = self.recovery_id(None)
-            print(recovery_id)
+            # print(recovery_id)
         return render(request, self.template_name, { 'form_id':form_id, })
 
 # 아이디 찾기 ajax 뷰
@@ -111,3 +113,21 @@ def ajax_find_id_view(request):
     result_id = User.objects.get(name=name, email=email)
 
     return HttpResponse(json.dumps({"result_id": result_id.user_id}, cls=DjangoJSONEncoder), content_type = "application/json")
+
+@method_decorator(logout_message_required, name='dispatch')
+class RecoveryPwView(View):
+    template_name = 'users/recovery_pw.html'
+    recovery_pw = RecoveryPwForm
+
+    def get(self, request):
+        if request.method=='GET':
+            form = self.recovery_pw(None)
+            return render(request, self.template_name, { 'form':form, })
+
+def ajax_find_pw_view(request):
+    name = request.POST.get('name')
+    email = request.POST.GET('email')
+    user_id = request.POST.GET('user_id')
+    result_pw = User.objects.get(name=name, email=email, user_id=user_id,)
+
+    return HttpResponse(json.dumps({"result_pw": result_pw.password}, cls=DjangoJSONEncoder), content_type = "application/json")
