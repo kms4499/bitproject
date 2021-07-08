@@ -1,0 +1,32 @@
+{% load static %}
+<nav class="navbar sticky-top navbar-light bg-light ">
+	<a class="navbar-brand ml-5" href="#"> <img
+			src="{% static 'img/KakaoTalk_20210521_092747994.png' %}" width="70" height="70"
+			class="d-inline-block align-bottom" alt="icon">
+		LAW-BOT
+	</a>
+
+	<ul class="nav justify-content-end mt-3" style="font-size: 16px;">
+		<li class="nav-item">
+			<a class="nav-link mt-3 px-sm-3" href="#">판결문</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link mt-3 px-sm-3" href="#">변호사</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link mt-3" href="/free/">커뮤니티</a>
+		</li>
+	</ul>
+
+	<ul class="nav justify-content-end mt-4">
+
+		<!-- Button trigger modal -->
+		<a href="#" class="btn btn-primary p-0 mt-3 pt-1" data-toggle="modal" data-target="#exampleModalCenter" style="font-size: 13px;">
+			로그인
+		</a>
+
+		<li class="nav-item">
+			<a class="nav-link mr-5 mt-3" href="/users/agreement/">/회원가입</a>
+		</li>
+	</ul>
+</nav>

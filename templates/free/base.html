@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>커뮤니티</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+        <style>
+  .left-menu {
+  margin-top: 3px;
+}
+.sub .left .left-head h2 {
+  background: #FFDC3C;
+  height: 100px;
+  font-family: "Nanum Square";
+  text-align: center;
+  vertical-align: middle;
+  font-size: 27px;
+  font-weight: bold;
+  line-height: 100px;
+  color: #fff;
+}
+.sub .left .left-head h2:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.sub .left .left-menu a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-size: 100px;
+}
+.sub .left .left-menu a:hover,
+.left .left-menu a:visited,
+.left .left-menu a:focus {
+  text-decoration: none;
+}
+.sub .panel {
+  background: transparent !important;
+  margin-bottom: 0;
+  border-radius: 0 !important;
+  border: 0;
+  box-shadow: 0 0 0 0;
+}
+.sub .panel-heading {
+  border-radius: 0;
+  padding: 0;
+}
+.sub .panel-group {
+  margin: 0;
+}
+.sub .left .left-menu .depth2 > .panel {
+  margin: 0;
+  border-bottom: 1px solid #eee;
+}
+.sub .left .left-menu .depth2 .panel-heading {
+  background: transparent;
+}
+.sub .left .left-menu .depth2 .panel-heading:hover {
+  background: #edf7f6;
+}
+.sub .left .left-menu .depth2 > .panel > .panel-heading a {
+  color: #222;
+  font-size: 17px;
+  padding: 10px 20px;
+}
+.sub .left .left-menu .depth2 > .panel > .panel-heading a .fa {
+  float: right;
+  font-size: 14px;
+  margin-top: 4px;
+}
+.sub .left .left-menu .depth2 > .panel > .panel-heading a .fa:before {
+  content: "\f067";
+}
+.sub .left .left-menu .depth2 > .panel > .panel-heading.active a .fa:before {
+  content: "\f068";
+}
+.sub .left .left-menu .depth2 .panel-body {
+  background: transparent;
+  color: #222;
+  font-size: 15px;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+}
+.sub .left .left-menu .depth2 > .panel > .panel-heading.active {
+  background: #dfeaed;
+}
+.sub .left .left-menu .depth2 > .panel > .panel-heading.active .panel-title a {
+  color: #3691a6;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.sub .left .left-menu .depth3 {
+  background: #f5f6f6;
+  border: 0;
+  border-radius: 0;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+.sub .left .left-menu .depth3 .panel {
+  margin: 0;
+}
+.sub .left .left-menu .depth3 .panel .panel-heading .panel-title a {
+  color: #7d7f7e;
+  font-size: 15px;
+  padding: 6px 20px;
+}
+.sub .left .left-menu .depth3 .panel .panel-heading .panel-title a i {
+  margin-right: 5px;
+}
+.sub .left .left-menu .depth3 .panel .panel-heading.active .panel-title a {
+  color: #18978c;
+}
+        </style>
+    <link href="{% static 'css/free/assets/vendor/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css' %}" rel="stylesheet" media="screen">
+    <script src="{% static 'css/free/assets/vendor/bootstrap-datepicker/bootstrap-datepicker.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/free/assets/vendor/bxslider/jquery.bxslider.min.css' %}" type="text/css" media="screen" />
+    <script type="text/javascript" src="{% static 'css/free/assets/vendor/bxslider/jquery.bxslider.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'css/free/assets/vendor/bxslider/vendor/bxslider-drag.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/free/assets/vendor/fancybox/source/jquery.fancybox.css?v=2.1.5' %}" type="text/css" media="screen" />
+    <script type="text/javascript" src="{% static 'css/free/assets/vendor/fancybox/source/jquery.fancybox.js?v=2.1.5' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/free/assets/vendor/bootstrap/css/bootstrap.min.css' %}">
+</head>
+<body>
+    <div id="sub-wrap" class="sub" style="margin-top: 10%;">
+        <div class="container">
+            <div class="row">
+                <div class="left col-md-3 visible-md visible-lg">
+                    <div class="left-head">
+
+                        <h2>커뮤니티</h2>
+                    </div>
+                    <div class="left-menu">
+
+                        <div class="panel-group depth2" id="pc_menu_accordion_3">
+
+
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading ">
+                                    <span class="panel-title">
+                                        <a href="/free/" target="_blank">자유게시판</a>
+                                    </span>
+                                </div>
+
+                            </div>
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading ">
+                                    <span class="panel-title">
+                                        <a href="#" target="_blank">법률 TIP</a>
+                                    </span>
+                                </div>
+                            </div>
+                             <div class="panel panel-default">
+                                <div class="panel-heading ">
+                                    <span class="panel-title">
+                                        <a href="#"
+                                            target="_blank">1:1문의하기</a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="gnsubContent" class="right-wrap col-xs-12 col-md-9 print-100">
+                    <div class="row">
+                        <div id="container" class="sub-header col-xs-12">
+                            <div class="row">
+                                <div class="title-wrap col-xs-12">
+                                    <h3 class="con-title col-xs-12 col-md-10" data-brl-use="PT">자유게시판</h3>
+                                </div>
+<!-- 기본 템플릿 안에 삽입될 내용 Start -->
+{% block content %}
+{% endblock %}
+<!-- 기본 템플릿 안에 삽입될 내용 End -->
+<!-- jQuery JS -->
+<!-- Bootstrap JS -->
+</body>
+</html>
