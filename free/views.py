@@ -5,6 +5,22 @@ from .models import Free, Comment
 from django.core.paginator import Paginator
 from users.decorators import *
 
+# def post_new(request):
+#
+#     if request.method == 'POST':
+#         form = FreeForm(request.POST, request.FILES)
+#
+#         if form.is_valid():
+#             post = form.save(commit=False)
+#             post.user = request.user
+#             post.save()
+#         return redirect('free/free_list.html')
+#     else:
+#         form = FreeForm()
+#     return render(request, 'free/free_form.html', {
+#         'form': form
+#     })
+
 def index(request):
     page = request.GET.get('page', '1') #페이지
     free_list = Free.objects.order_by('-create_date') # 최근생성시간 순으로
@@ -57,10 +73,9 @@ def free_delete(request, free_id):
     free = get_object_or_404(Free, pk=free_id)
     if request.user != free.author:
         messages.error(request, '삭제권한이 없습니다')
-        return redirect('free:detail', question_id=free.id)
+        return redirect('free/free:detail', free_id=free.id)
     free.delete()
     return redirect('free:index')
-
 
 # 댓글등록
 def comment_create_free(request, free_id):
@@ -73,7 +88,8 @@ def comment_create_free(request, free_id):
             comment.create_date = timezone.now()
             comment.free = free
             comment.save()
-            return redirect('free/free:detail', free_id=free.id)
+            return redirect('{}#comment_{}'.format(
+                resolve_url('free:detail', free_id=comment.free.id), comment.id))
     else:
         form = CommentForm()
     context = {'form': form}

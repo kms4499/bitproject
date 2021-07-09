@@ -45,12 +45,12 @@
                         <div class="comment py-2 text-muted">
                             <span style="white-space: pre-line;">{{ comment.content }}</span>
                             <span>
-                                - {{ comment.wirter }}, {{ comment.create_date }}
+                                - {{ comment.writer }}, {{ comment.create_date }}
                                 {% if comment.modify_date %}
                                 (수정:{{ comment.modify_date }})
                                 {% endif %}
                             </span>
-                            {% if request.user == comment.author %}
+                            {% if request.user == comment.writer %}
                             <a href="{% url 'free:comment_modify_free' comment.id  %}" class="small">수정</a>,
                             <a href="#" class="small delete"
                                data-uri="{% url 'free:comment_delete_free' comment.id  %}">삭제</a>
@@ -61,7 +61,7 @@
                     {% endif %}
                     <div>
                         <a href="{% url 'free:comment_create_free' free.id  %}"
-                           class="small"><small>댓글 추가 ..</small></a>
+                           class="small"><small>댓글쓰기</small></a>
                     </div>
                     <!-- 질문 댓글 End -->
                 </div>

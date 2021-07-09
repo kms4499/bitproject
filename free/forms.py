@@ -1,6 +1,6 @@
+from django.shortcuts import render, redirect
 from django import forms
 from free.models import Free, Comment
-
 
 class FreeForm(forms.ModelForm):
     class Meta:
