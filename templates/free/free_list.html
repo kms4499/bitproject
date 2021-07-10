@@ -47,24 +47,26 @@
             <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
         </li>
         {% endif %}
+
         <!-- 페이지리스트 -->
         {% for page_number in free_list.paginator.page_range %}
         {% if page_number >= free_list.number|add:-5 and page_number <= free_list.number|add:5 %}
             {% if page_number == free_list.number %}
             <li class="page-item active" aria-current="page">
-                <a class="page-link" data-page="{{ page_number }}" href="#">{{ page_number }}</a>
+                <a class="page-link"  href="?page = {{ page_number }}">{{ page_number }}</a>
             </li>
             {% else %}
             <li class="page-item">
-                <a class="page-link" data-page="{{ page_number }}" href="#">{{ page_number }}</a>
+                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
             </li>
             {% endif %}
         {% endif %}
         {% endfor %}
+
         <!-- 다음페이지 -->
         {% if free_list.has_next %}
         <li class="page-item">
-            <a class="page-link" data-page="{{ free_list.next_page_number }}" href="#">다음</a>
+            <a class="page-link" data-page="#" href="?page={{ free_list.next_page_number }}">다음</a>
         </li>
         {% else %}
         <li class="page-item disabled">
@@ -72,6 +74,7 @@
         </li>
         {% endif %}
     </ul>
+
     <!-- 페이징처리 끝 -->
     <a href="{% url 'free:free_create' %}" class="btn btn-primary">글쓰기</a>
 </div>

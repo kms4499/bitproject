@@ -10,7 +10,6 @@ class FreeForm(forms.ModelForm):
             'subject': '제목',
             'content': '내용',
         }
-
 # class AnswerForm(forms.ModelForm):
 #     class Meta:
 #         model = Answer
@@ -18,7 +17,6 @@ class FreeForm(forms.ModelForm):
 #         labels = {
 #             'content': '답변내용',
 #         }
-
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment

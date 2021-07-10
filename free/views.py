@@ -22,10 +22,11 @@ from users.decorators import *
 #     })
 
 def index(request):
-    page = request.GET.get('page', '1') #페이지
-    free_list = Free.objects.order_by('-create_date') # 최근생성시간 순으로
+    free_list = Free.objects.all().order_by('id') # 최근생성시간 순으로
+    page = request.GET.get('page', '1')  # 페이지
     paginator = Paginator(free_list, 10) # 페이지당 10개씩 보여주기
     page_obj = paginator.get_page(page)
+
     context = {'free_list': page_obj}
     return render(request, 'free/free_list.html', context)
 
@@ -88,8 +89,7 @@ def comment_create_free(request, free_id):
             comment.create_date = timezone.now()
             comment.free = free
             comment.save()
-            return redirect('{}#comment_{}'.format(
-                resolve_url('free:detail', free_id=comment.free.id), comment.id))
+            return redirect('free:detail', free_id=free.id)
     else:
         form = CommentForm()
     context = {'form': form}
