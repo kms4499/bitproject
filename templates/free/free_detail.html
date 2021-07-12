@@ -1,7 +1,13 @@
 {% extends 'free/base.html' %}
 {% load free_filter %}
 {% block content %}
-<div class="container my-3">
+<div class="col-8">
+  <div class="tab-content" id="nav-tabContent" style="margin-top: -20%;">
+      <div class="tab-pane fade show active" id="list-home" role="tabpanel"
+           aria-labelledby="list-home-list">
+      <h1>자유게시판</h1>
+      <hr>
+    <table class="table3 table-hover text-center" style="margin-left: 5%; margin-top: 10%;">
     <!-- 사용자오류 표시 -->
     {% if messages %}
     <div class="alert alert-danger my-3" role="alert">
@@ -11,6 +17,7 @@
     {% endfor %}
     </div>
     {% endif %}
+     <br>
     <h2 class="border-bottom py-2">{{ free.title }}</h2>
     <div class="row my-3">
         <div class="col-11"> <!-- 질문영역 -->
@@ -34,7 +41,7 @@
                     <div class="my-3">
                         <a href="{% url 'free:free_modify' free.id  %}"
                            class="btn btn-sm btn-outline-secondary">수정</a>
-                        <a href="#" class="delete btn btn-sm btn-outline-secondary"
+                        <a href="{% url 'free:free_delete' free.id  %}" class="delete btn btn-sm btn-outline-secondary"
                            data-uri="{% url 'free:free_delete' free.id  %}">삭제</a>
                     </div>
                     {% endif %}
@@ -49,6 +56,7 @@
 
                             <span>
                                 - {{ comment.writer }}, {{ comment.create_date }}
+                                <br>
                                 {% if comment.modify_date %}
                                 (수정:{{ comment.modify_date }})
                                 {% endif %}
@@ -56,8 +64,8 @@
 
                             {% if request.user == comment.writer %}
                             <a href="{% url 'free:comment_modify_free' comment.id  %}" class="small">수정</a>,
-                            <a href="{% url 'free:comment_delete_free' comment.id  %}" class="small delete"
-                               data-uri="#">삭제</a>
+                            <a href="#" class="small delete"
+                               data-uri="{% url 'free:comment_delete_free' comment.id  %}">삭제</a>
                             {% endif %}
                         </div>
                     {% endfor %}
@@ -74,6 +82,7 @@
             </div>
         </div>
     </div>
+    </table>
 </div>
 {% endblock %}
 

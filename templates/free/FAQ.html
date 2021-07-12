@@ -1,0 +1,125 @@
+{% extends 'free/base.html' %}
+{% load free_filter %}
+{% block content %}
+<!--내 글 확인-->
+
+<div class="tab-pane fade" id="list-profile" role="tabpanel"
+     aria-labelledby="list-profile-list">
+
+  <div id="sub-wrap" class="sub" style="margin-top: 10%;">
+
+    <h1>FAQ</h1>
+
+    <hr>
+    <div class="normal board list clear-b">
+      <div class="col-xs-12">
+        <div class="row">
+
+          <h3 style="margin-left: 5%;">"법률, 미리 알아봐요"</h3>
+          <div class="search">
+            <input type="text" id="keyword" name="keyword" placeholder="제목/내용">
+            <button type="submit" class="btn btn-primary"
+                    style="margin-top: -3%;">검색</button>
+          </div>
+          <div class="row">
+            <div class="col-md-4 py-2">
+              <div class="card card-body h-100" image="media/1.png">
+                <a href="https://www.youtube.com/watch?v=i9ZTmcFbYbo">
+                  <img src="media/1.PNG"
+                       width="100%" height="120%"></a>
+              </div>
+            </div>
+            <div class="col-md-8 py-2">
+              <div class="card h-100">
+                <div class="card-body">
+                  <a href="https://www.youtube.com/watch?v=i9ZTmcFbYbo"
+                     class="link">
+                    <h4>근로자라면 언제든 당할 수 있는 산업재해! 이 영상 하나면 산재보험 클리어!</h4>
+                    <hr>
+
+                  </a>
+                  <p>A:이런 부상도 산재보험이 된다고요?<br>
+                    B:일하다 실수로 다쳤는데 보상을 해준다고요?<br>
+                    오늘 랜선노동법 주제는 산업재해 입니다!
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 py-2">
+              <div class="card card-body h-100" image="media/1.png">
+                <a href="https://www.youtube.com/watch?v=iDtglrj7Whg"
+                   target="_blank">
+                  <img src="media/2.PNG"
+                       width="100%" height="120%"></a>
+              </div>
+            </div>
+            <div class="col-md-8 py-2">
+              <div class="card h-100">
+                <div class="card-body">
+                  <a href="https://www.youtube.com/watch?v=iDtglrj7Whg"
+                     class="link">
+                    <h4>산재보험, 제대로 알고 보상 신청하자</h4>
+                    <hr>
+
+                  </a>
+                  <p>산업재해보상법상 산재제도는 왜 있는 것일까요?<br>
+                    사용자가 지는 무과실책임 원칙에 따른 우리 노동자의 당연한 권리를 알아 보도록
+                    하겠습니다.<br>
+                    &nbsp;
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 py-2">
+              <div class="card card-body h-100" image="media/1.png">
+                <a href="https://www.youtube.com/watch?v=Uv7YbaBEoDk"
+                   target="_blank">
+                  <img src="media/3.PNG"
+                       width="100%" height="120%"></a>
+              </div>
+            </div>
+            <div class="col-md-8 py-2">
+              <div class="card h-100">
+                <div class="card-body">
+                  <a href="https://www.youtube.com/watch?v=Uv7YbaBEoDk"
+                     class="link">
+                    <h3>일하다 다쳤을때, 산재처리방법 3분정리</h3>
+                    <hr>
+
+                  </a>
+                  <p>산재처리방법 포인트<br>
+                    산재의 기준 - 근로자 해당 여부, 일하다 다침(병에걸림)<br>
+                    산재보상 절차 - 최초요양신청서 또는 유족급여 및 장의비 신청<br>
+                    산재승인 이후 - 요양비, 휴업급여, 장해급여 청구
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<nav aria-label="Page navigation example" style="margin:10% 0 10% 0;">
+  <ul class="pagination justify-content-center">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+</div>
+{% endblock %}

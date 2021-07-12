@@ -35,6 +35,7 @@ def detail(request, free_id):
     context = {'free': free}
     return render(request, 'free/free_detail.html', context)
 
+
 def free_create(request):
     if request.method == 'POST':
         form = FreeForm(request.POST)
@@ -64,7 +65,7 @@ def free_modify(request, free_id):
             free.save()
             return redirect('free:detail', free_id=free.id)
     else:
-        form = FreeForm(instance=free)
+        form = FreeForm()
     context = {'form': form}
     return render(request, 'free/free_form.html', context)
 
@@ -72,7 +73,7 @@ def free_modify(request, free_id):
 # @login_required(login_url='common:login')
 def free_delete(request, free_id):
     free = get_object_or_404(Free, pk=free_id)
-    if request.user != free.author:
+    if request.user != free.writer:
         messages.error(request, '삭제권한이 없습니다')
         return redirect('free/free:detail', free_id=free.id)
     free.delete()
@@ -85,9 +86,10 @@ def comment_create_free(request, free_id):
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
+            comment.title = free
             comment.writer = request.user
             comment.create_date = timezone.now()
-            comment.free = free
+            # comment.free = free
             comment.save()
             return redirect('free:detail', free_id=free.id)
     else:
@@ -100,7 +102,7 @@ def comment_modify_free(request, comment_id):
     comment = get_object_or_404(Comment, pk=comment_id)
     if request.user != comment.writer:
         messages.error(request, '댓글수정권한이 없습니다')
-        return redirect('free:detail', free_id=comment.free.id)
+        return redirect('free:detail', free_id=comment.title.id)
 
     if request.method == "POST":
         form = CommentForm(request.POST, instance=comment)
@@ -109,8 +111,7 @@ def comment_modify_free(request, comment_id):
             comment.writer = request.user
             comment.modify_date = timezone.now()
             comment.save()
-            return redirect('{}#comment_{}'.format(
-                resolve_url('free:detail', free_id=comment.free.id), comment.id))
+            return redirect('free:detail', free_id=comment.title.id)
     else:
         form = CommentForm(instance=comment)
     context = {'form': form}
@@ -121,8 +122,8 @@ def comment_delete_free(request, comment_id):
     comment = get_object_or_404(Comment, pk=comment_id)
     if request.user != comment.writer:
         messages.error(request, '댓글삭제권한이 없습니다')
-        return redirect('free:detail', free_id=comment.free_id)
+        return redirect('free:detail', free_id=comment.title.id)
     else:
         comment.delete()
-    return redirect('free:detail', free_id=comment.free_id)
+    return redirect('free:detail', free_id=comment.title.id)
 
