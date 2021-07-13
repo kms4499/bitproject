@@ -1,0 +1,23 @@
+{% extends 'free/base.html' %}
+{% block content %}
+
+<!--tip 내용  -->
+{% for tips in tips_list %}
+  <div class="col-md-8 py-2">
+    <div class="card h-100">
+      <div class="card-body">
+        <a href="{url 'tips:tips_detail' tips.id %}"
+           class="link">
+          <h4>{{ tips.title }}</h4>
+          <hr>
+        </a>
+        <a>{{tips.created_date}}</a>
+        <p>
+          {{ tips.content }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% endblock %}

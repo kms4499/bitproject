@@ -1,99 +1,119 @@
 {% extends 'free/base.html' %}
 {% load free_filter %}
 {% block content %}
-<div class="tab-pane fade" id="list-messages" role="tabpanel"
-     aria-labelledby="list-messages-list">
-    <article id="mArticle">
-        <h2 id="kakaoBody" class="tit_commercecs">1:1 문의하기</h2>
-        <form id="requestForm" action="/inquire"  method="post" enctype="multipart/form-data" accept-charset="UTF-8">
-            <input type="hidden" name="_csrf" value="c4925404-a459-479f-8f13-ea8ee98305ee" />
-            <input type="hidden" name="service" value="111">
-            <input type="hidden" id="categoryId" name="categoryId" >
-            <input type="hidden" id="countryNumber" name="countryNumber" value="82">
-            <input type="hidden" id="errorTraceId" name="errorTraceId" value="">
-            <input type="hidden" id="errorMessage" name="errorMessage" value="">
-            <input type="hidden" id="errorTime" name="errorTime" value="">
-            <fieldset class="fld_entercs">
-                <legend class="screen_out">문의하기 폼</legend>
-                <div class="detail_entercs">
-                    <div class="check_before hide">
-                        <strong class="tit_before">
-                            <a href="javascript:void(0)" class="link_before">
-                                문의전 먼저 확인해 주세요!
-                                <span class="ico_commercecs ico_fold">하위내용 보기</span>
-                            </a>
-                        </strong>
-                        <div class="about_before">
-                            <ul class="list_before">
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="bundle_entercs">
-                        <strong class="tit_bundle tit_type2">
-                            문의유형<span class="ico_commercecs ico_require">필수항목</span>
-                        </strong>
-                        <div class="about_bundle">
-                            <div id="pcTypeCategory" class="split_fill split_select">
-                                <div class="select_entercs">
-                                    <em class="screen_out">대분류 카테고리 선택상자</em>
-                                    <a href="javascript:void(0)" class="link_select" aria-expanded="false">선택해주세요<span class="ico_commercecs ico_arrow">선택됨</span></a>
-                                    <div class="opt_layer">
-                                        <em class="screen_out">대분류 카테고리 선택항목</em>
-                                        <ul id="firstCategories" class="list_opt">
-                                            <li value="287">
-                                                <a href="javascript:void(0)" class="link_opt"
-                                                >
-                                                    <span>채팅</span>
-                                                </a>
-                                            </li>
-                                            <li value="288">
-                                                <a href="javascript:void(0)" class="link_opt"
-                                                >
-                                                    <span>판결문</span>
-                                                </a>
-                                            </li>
-                                            <li value="415">
-                                                <a href="javascript:void(0)" class="link_opt"
-                                                >
-                                                    <span>변호사</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="select_entercs
-                                            select_disabled">
-                                    <em class="screen_out">소분류 카테고리 선택상자</em>
-                                    <a href="javascript:void(0)" class="link_select" aria-expanded="false" aria-disabled="true" tabindex="-1">
-                                        선택해주세요<span class="ico_commercecs ico_arrow">선택됨</span>
-                                    </a>
-                                    <div class="opt_layer">
-                                        <em class="screen_out">소분류 카테고리 선택항목</em>
-                                        <ul id="secondCategories" class="list_opt">
-                                        </ul>
-                                    </div>
-                                </div>
-                                <span class="txt_error">유형을 선택해주세요</span>
-                            </div>
+<!--내 글 확인-->
 
-                        </div>
-                    </div>
-                    <div class="bundle_entercs">
-                        <strong class="tit_bundle tit_type2"><label for="contInquiry">문의내용</label><span class="ico_commercecs ico_require">필수항목</span></strong>
-                        <div class="about_bundle">
-                            <div class="write_entercs write_long">
-                                <textarea id="contInquiry" name="content" class="tf_g" maxlength="550" placeholder="문의 할 내용을 자세히 적어주시면 더 좋습니다!"></textarea>
-                                <span class="txt_error">500자 이내로 작성해 주세요</span>
-                            </div>
+<div class="tab-pane fade" id="list-profile" role="tabpanel"
+     aria-labelledby="list-profile-list">
 
-                        </div>
-                    </div>
+  <div id="sub-wrap" class="sub" style="margin-top: 10%;">
+
+    <h1>법률팁</h1>
+
+    <hr>
+    <div class="normal board list clear-b">
+      <div class="col-xs-12">
+        <div class="row">
+          <h3 style="margin-left: 5%;">"법률, 미리 알아봐요"</h3>
+
+          <div class="row">
+            <div class="col-md-4 py-2">
+              {% for tip in tip_list %}
+              <div class="card card-body h-100" image="media/1.png">
+                <a href="https://www.youtube.com/watch?v=i9ZTmcFbYbo">
+                  <img src="media/1.PNG"
+                       width="100%" height="120%"></a>
+              </div>
+              {% endfor %}
+            </div>
+
+            <div class="col-md-8 py-2">
+              <div class="card h-100">
+                <div class="card-body">
+                  <a href="https://www.youtube.com/watch?v=i9ZTmcFbYbo"
+                     class="link">
+                    <h4>{{ tip.title }}</h4>
+                    <hr>
+
+                  </a>
+                  <p>
+                      {{ tip.content }}
+                  </p>
                 </div>
-                <div class="receive_entercs">
-                    <button type="submit" class="btn_receive">문의접수</button>
+              </div>
+            </div>
+
+            <div class="col-md-4 py-2">
+              <div class="card card-body h-100" image="media/1.png">
+                <a href="https://www.youtube.com/watch?v=iDtglrj7Whg"
+                   target="_blank">
+                  <img src="media/2.PNG"
+                       width="100%" height="120%"></a>
+              </div>
+            </div>
+            <div class="col-md-8 py-2">
+              <div class="card h-100">
+                <div class="card-body">
+                  <a href="https://www.youtube.com/watch?v=iDtglrj7Whg"
+                     class="link">
+                    <h4>산재보험, 제대로 알고 보상 신청하자</h4>
+                    <hr>
+
+                  </a>
+                  <p>산업재해보상법상 산재제도는 왜 있는 것일까요?<br>
+                    사용자가 지는 무과실책임 원칙에 따른 우리 노동자의 당연한 권리를 알아 보도록
+                    하겠습니다.<br>
+                    &nbsp;
+                  </p>
                 </div>
-            </fieldset>
-        </form>
-    </article>
+              </div>
+            </div>
+            <div class="col-md-4 py-2">
+              <div class="card card-body h-100" image="media/1.png">
+                <a href="https://www.youtube.com/watch?v=Uv7YbaBEoDk"
+                   target="_blank">
+                  <img src="media/3.PNG"
+                       width="100%" height="120%"></a>
+              </div>
+            </div>
+            <div class="col-md-8 py-2">
+              <div class="card h-100">
+                <div class="card-body">
+                  <a href="https://www.youtube.com/watch?v=Uv7YbaBEoDk"
+                     class="link">
+                    <h3>일하다 다쳤을때, 산재처리방법 3분정리</h3>
+                    <hr>
+
+                  </a>
+                  <p>산재처리방법 포인트<br>
+                    산재의 기준 - 근로자 해당 여부, 일하다 다침(병에걸림)<br>
+                    산재보상 절차 - 최초요양신청서 또는 유족급여 및 장의비 신청<br>
+                    산재승인 이후 - 요양비, 휴업급여, 장해급여 청구
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<nav aria-label="Page navigation example" style="margin:10% 0 10% 0;">
+  <ul class="pagination justify-content-center">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
 </div>
 {% endblock %}

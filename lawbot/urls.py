@@ -19,7 +19,8 @@ from lawbot.views import HomeView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('users/', include('users.urls')),
     path('', HomeView.as_view(), name='home'),
     path('free/', include('free.urls')),
+    path('users/', include('users.urls')),
+    path('tips/', include('tips.urls')),
 ]

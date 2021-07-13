@@ -22,7 +22,7 @@ from users.decorators import *
 #     })
 
 def index(request):
-    free_list = Free.objects.all().order_by('id') # 최근생성시간 순으로
+    free_list = Free.objects.all().order_by('create_date') # 최근생성시간 순으로
     page = request.GET.get('page', '1')  # 페이지
     paginator = Paginator(free_list, 10) # 페이지당 10개씩 보여주기
     page_obj = paginator.get_page(page)
