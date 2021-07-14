@@ -3,7 +3,7 @@ from tips.models import Tip
 from django.core.paginator import Paginator
 
 def index(request):
-    tips_list = Tip.objects.all().order_by('created_date')
+    tips_list = Tip.objects.all().order_by('-created_date')
     page = request.GET.get('page', '1')
     paginator = Paginator(tips_list, 5)
     page_obj = paginator.get_page(page)
