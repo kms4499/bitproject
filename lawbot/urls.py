@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from lawbot.views import HomeView
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,4 +25,7 @@ urlpatterns = [
     path('free/', include('free.urls')),
     path('users/', include('users.urls')),
     path('tips/', include('tips.urls')),
+    path('faq/', include('faq.urls')),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

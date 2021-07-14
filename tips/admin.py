@@ -6,9 +6,9 @@ class TipAdmin(admin.ModelAdmin):
         'title',
         'content',
         'img',
-        'video_key',
+        'url',
         'created_date',
     )
-    search_fields = ['title', 'content', 'img', 'video_key', 'created_date']
+    search_fields = ['title', 'content', 'img', 'url', 'created_date']
 
 admin.site.register(Tip, TipAdmin)

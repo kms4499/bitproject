@@ -2,22 +2,32 @@
 {% block content %}
 
 <!--tip 내용  -->
-{% for tips in tips_list %}
-  <div class="col-md-8 py-2">
-    <div class="card h-100">
-      <div class="card-body">
-        <a href="{url 'tips:tips_detail' tips.id %}"
-           class="link">
-          <h4>{{ tips.title }}</h4>
-          <hr>
-        </a>
-        <a>{{tips.created_date}}</a>
-        <p>
-          {{ tips.content }}
-        </p>
+  <div id="sub-wrap" class="sub" style="margin-top: 10%;">
+    <span style="font-size:35px;">법률팁</span>
+    <hr>
+    <div class="normal board list clear-b">
+      <div class="col-xs-12">
+        <div class="row">
+          <br>
+          <h3 style="margin-left: 5%; font-size:20px ">"법률, 미리 알아봐요"</h3>
+          <br><br>
+            <div class="col-md-10 py-2">
+              <div class="card h-100">
+                <div class="card-body">
+                  <a>
+                    <span style="font-size:13px;">{{ tips.content}}</span>
+                  </a>
+                  <br>
+                  <br>
+                  <a>등록일시 : {{tips.created_date}}</a>
+                  <ul>
+                    <li>URL:<a href="{{tips.url}}">{{tips.url}}</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-{% endfor %}
 {% endblock %}
