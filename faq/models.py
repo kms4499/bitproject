@@ -13,6 +13,11 @@ class Question(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        db_table = '질문하기'
+        verbose_name = '질문하기'
+        verbose_name_plural = '질문하기'
+
 class Answer(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='답변자', null=True)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
@@ -20,3 +25,8 @@ class Answer(models.Model):
     create_date = models.DateTimeField(null=True, blank=True)
     modify_date = models.DateTimeField(null=True, blank=True)
     answer_case = models.CharField(max_length=24, verbose_name="대답유형", null=True)
+
+    class Meta:
+        db_table = '답변하기'
+        verbose_name = '답변하기'
+        verbose_name_plural = '답변하기'
