@@ -1,261 +1,165 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 {% load static %}
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MainPage</title>
-  <link rel="stylesheet" href="{% static '/css/home/Main.css' %}" type="text/css">
-  <!-- <script src="Main.js" type="text/javascript"></script> -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>law-bot</title>
 
-  <link rel="stylesheet" href="{% static '/css/home/fullpage.min.css' %}">
-  <script src="{% static '/js/home/fullpage.min.js' %}"></script>
-
-  <!-- 마지막페이지css -->
-  <link rel="stylesheet" href="{% static '/css/home/Main.css' %}">
-
-
-  <!-- 글씨폰트 -->
-  <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Indie+Flower&family=Kirang+Haerang&family=Nanum+Pen+Script&display=swap"rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
-
+	<link rel="stylesheet" href="{% static '/css/home/bootstrap.min.css' %}" type="text/css">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
 
 </head>
 
-<body>
+<body marginwidth="0" marginheight="0">
 
+<!--header-->
+<nav class="navbar sticky-top navbar-light bg-light ">
+	<a class="navbar-brand ml-5" href="#"> <img
+			src="{% static 'img/KakaoTalk_20210521_092747994.png' %}" width="70" height="70"
+			class="d-inline-block align-bottom" alt="icon">
+		LAW-BOT
+	</a>
 
-  <!--header-->
-  <nav class="navbar sticky-top" style="top:0; width: 100%; position: fixed; background-color: rgb(252, 252, 252);">
+	<ul class="nav justify-content-end mt-3" style="font-size: 16px;">
+		<li class="nav-item">
+			<a class="nav-link mt-3 px-sm-3" href="#">판결문</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link mt-3 px-sm-3" href="#">변호사</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link mt-3" href="{% url 'free:index' %}">커뮤니티</a>
+		</li>
+	</ul>
 
-    <a class="navbar-brand ml-5" href="#"
-      style="font-family: 'Nanum Pen Script', cursive; color:rgb(224, 185, 9); font-size:50px"> <img
-        src="{% static 'img/icon.jpg' %}" width="70" height="70" class="d-inline-block align-bottom" alt="icon">
-      LAW-BOT
-    </a>
+	<ul class="nav justify-content-end mt-4">
 
+		<!-- Button trigger modal -->
+		<a href="#" class="btn btn-primary p-0 mt-3 pt-1" data-toggle="modal" data-target="#exampleModalCenter" style="font-size: 13px;">
+			로그인
+		</a>
 
-    <ul class="nav justify-content-end mt-3 mr-1" style="font-family: 'Jua', sans-serif;">
-      <li class="nav-item">
-        <a class="nav-link mt-4 px-sm-3" href="#">변호사</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link mt-4 px-sm-3" href="{% url 'free:index' %}">커뮤니티</a>
-      </li>
-      <li class="nav-item" style="width:25%">
-        <a class="nav-link mt-4 px-sm-3" href="/mypage/Mypage/">마이페이지</a>
-      </li>
-<!--    </ul>-->
+		<li class="nav-item">
+			<a class="nav-link mr-5 mt-3" href="/users/agreement/">/회원가입</a>
+		</li>
+	</ul>
+</nav>
 
-<!--    <ul class="nav justify-content-end mt-3" style="font-family: 'Jua', sans-serif; margin-right:5%">-->
-      <div style="float: right; width: 23%; margin:2% 5% 0 0;">
-        <button type="button" onclick="location.href = '#' " data-toggle="modal" data-target="#exampleModalCenter"
-          class="btn btn-warning" style="margin-right:3%">로그인</button>
-        <button type="button" onclick="location.href = '/users/agreement/' " class="btn btn-warning">회원가입</button>
-      </div>
-    </ul>
-  </nav>
+<!-- login -->
+		<div class="modal fade" id="exampleModalCenter" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header" style="background-color: #FFCE50;">
+						<h5 class="col-md-12 text-center" style="margin-left: 125px;">로그인</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label for="{{ form.user_id.id_for_label }}" style="font-size: 15px;">{{form.user_id}}</label>
+							<input type="user_id" name="아이디"  class="form-control1" id="user_id" aria-describedby="emailHelp" placeholder="Email">
+						</div>
+						<div class="form-group">
+							<label for="{{form.user.passowrd.id_for_label }}" style="font-size: 15px;">{{ form.password }}</label>
+							<input type="password" name="비밀번호" id="password"  class="form-control1" aria-describedby="emailHelp" placeholder="Password">
+						</div>
 
+						<div class="row align-items-center remember" style="margin-right: 10px;">
+							<input type="checkbox">아이디 저장
+						</div>
+						<div></div>
+						<div class="row align-items-center remember" style="margin-right: 20px;">
+							<input type="checkbox">로그인 상태유지
+						</div></br><br>
 
+						<div class="form-group" style="width: 80px; margin: 0 auto;">
+							<button type="button" class="btn btn-primary1">로그인</button>
+					</div>
+						<div class="text-center" style="width: 150px; margin: 0 auto;">
+						<a href="users/agreement/" class="login"
+						   onclick="location.href='/users/agreement.html'">회원가입</a>
+						<span style="font-size: 5px;">|</span>
+						<a href="/users/recovery/id/" class="login" onclick="location.href='users/recovery_id.html'">아이디/비번 찾기</a>
+						</div>
+						</div>
+<!--					<div class="modal-footer">-->
+<!--						<button type="button" class="btn btn-primary" style="width: 280px; margin: 0 auto; ">-->
+<!--							<img src="{% static 'img/naver-login.png' %}" width="250px;" height="40px">-->
+<!--						</button>-->
+<!--						<button type="button" class="btn btn-primary" style="width: 280px; margin: 0 auto; ">-->
+<!--							<img src="{% static 'img/kakao-login.png' %}" width="250px;" height="40px">-->
+<!--						</button>-->
+<!--					</div>-->
+				</div>
+			</div>
+		</div>
 
+		<script>
+			$(document).on('click', '[data-toggle="lightbox"]', function(event) {
+				event.preventDefault();
+				$(this).ekkoLightbox();
+			});
+		</script>
 
+<!--first page-->
+<div class="img">
+	<video autoplay loop muted poster="aaa" preload="bbb" class="phone">
+  		<source src="{% static 'img/video.mp4' %}" type="video/mp4">
+	</video>
+	<div class="content">
+		<div class="input-group flex-nowrap">
+			<input placeholder="저와의 대화를 통해 고민을 해결하세요" type="text" id="chat"
+				   class="form-control text-center" style="background-color:rgba( 0, 0, 0, 0 )" >
+			<button type="button" class="btn btn-primary">
+				<img src="{% static 'img/돋보기-icon.png' %}" class="iconimg">
+			</button>
+			<button type="button" class="btn btn-primary" >
+				<img src="{% static 'img/음성-icon.png' %}" width=30px height=40px>
+			</button>
 
+		</div>
+	</div>
+</div>
 
-  <!-- login -->
-  <div class="modal fade" id="exampleModalCenter" data-backdrop="static" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content" style="margin-left:10%">
-        <div class="modal-header" style="background-color: #FFCE50;">
-          <h2 class="col-md-12 text-center" style="">Login</h2>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">아이디
-            <label for="{{ form.user_id.id_for_label }}" style="font-size: 15px;">{{form.user_id}}</label>
-            <input type="email" name="이메일" class="form-control1" id="email" aria-describedby="emailHelp">
-          </div>
-          <div class="form-group">비밀번호
-            <label for="{{form.user_passowrd.id_for_label }}" style="font-size: 15px;">{{ form.password }}</label>
-            <input type="password" name="비밀번호" id="password" class="form-control1" aria-describedby="emailHelp"
-              style="font-color:black;">
-          </div>
+<!--second page-->
+<div class="img1">
+	<div class="container container-xl">
 
-          <div class="row align-items-center remember" style="margin-right: 10px; color:black;">
-            <input type="checkbox">아이디 저장
-          </div>
+		<div class="box" >
+			<button type="button" class="btn btn-secondary btn-block">
+				<img src="{% static 'img/판결문-icon.png' %}" class="boxicon">
+				<h5 style="padding-top: 20px;">판결문</h5>
+				판결문들을 통해 질문을 어느정도 해결할 수 있어요.
+			</button>
+		</div>
 
-          <div class="row align-items-center remember" style="margin-right: 25px; color:black;">
-            <input type="checkbox">로그인 상태유지
-          </div></br><br>
+		<div class="box">
+			<button type="button" class="btn btn-secondary btn-block">
+				<img src="{% static 'img/변호사-icon.png' %}" class="boxicon">
+				<h5 style="padding-top: 20px;">변호사</h5>
+				궁금하신 분야의 변호사들을 확인해보세요.
+			</button>
+		</div>
+		<div class="box">
+			<span class="btn-secondary btn-block" >
+				<img src="{% static 'img/커뮤니티-icon.png' %}" class="boxicon">
+				<h5 style="padding-top: 20px;">커뮤니티</h5>
+				마음 놓고 편안하게 사람들과 이야기를 나눠요.
+			</span>
+		</div>
 
-          <div class="form-group" style="width: 40%; margin: 0 auto;">
-            <button type="button" class="btn btn-primary1 text-center">로그인</button>
-          </div>
-          <div class="text-center" style="width: 150px; margin: 0 auto;">
-            <a href="/users/agreement/" class="login">회원가입</a>
-            <span style="font-size: 5px;">|</span>
-            <a href="/users/recovery/id/" class="login"  onclick="location.href='users/recovery_id.html'">아이디/비번 찾기</a>
-          </div>
-        </div>
-        <!-- <div class="modal-footer">
-          <button type="button" class="btn btn-primary" style="width: 280px; margin: 0 auto; ">
-            <img src="media/naver-login.png" width="250px;" height="40px">
-          </button>
-          <button type="button" class="btn btn-primary" style="width: 280px; margin: 0 auto; ">
-            <img src="media/kakao-login.png" width="250px;" height="40px">
-          </button>
-        </div> -->
-      </div>
-    </div>
-  </div>
+	</div>
+</div>
 
+<!--third page-->
+<div class="img2">
 
-  <!-- firstPage -->
-  <div id="full-page">
-    <div class="section first">
+</div>
 
-      <div id="table">
-        <div id="centeralign">
-          <h1>안녕하세요 로우봇입니다.</h1>
-          <p>저희 로우봇은 대화로 간편하게 판결문을 찾을 수 있는 서비스입니다.</p>
-        </div>
-      </div>
-      <div class="word thumb">
-        <span>L</span>
-        <span>a</span>
-        <span>w</span>
-        <span>-</span>
-        <span>B</span>
-        <span>o</span>
-        <span>t</span>
-        <br>
-        <video autoplay loop muted poster="aaa" preload="bbb" style="  margin-left: 45px;width:30%">
-          <source src="{% static 'img/main_video.mp4' %}" type="video/mp4">
-        </video>
-
-        <a href="#">
-          <span>the optimist lives on</span>
-        </a>
-      </div>
-
-
-      <div class="content">
-        <div class="input-group flex-nowrap">
-
-          <input placeholder="저와의 대화를 통해 고민을 해결하세요" type="text" id="chat" class="form-control text-center"
-            style="background-color:rgba( 0, 0, 0, 0 ); color: black;">
-
-          <button type="button" class="btn btn-primary">
-            <img src="{% static 'img/돋보기.png' %}" class="iconimg">
-          </button>
-          <button type="button" class="btn btn-primary">
-            <img src="{% static 'img/mic.png' %}" width=30px height=40px>
-          </button>
-        </div>
-
-
-
-      </div>
-      <footer>
-        <p>안녕하세요 <i class="fa fa-heart"></i> by <a target="_blank" href="https://florin-pop.com">Law-Bot</a></p>
-      </footer>
-    </div>
-
-
-
-    <!-- 두번째페이지 -->
-    <div class="section well well-lg" style="width:60%">
-      <div class="contain">
-        <div class="item" style="margin-top: 15%;">
-          <figure class="snip1477">
-            <img src="{% static 'img/lawyer.jpg' %}" alt="sample38">
-            <div class="title">
-              <div>
-                <h2>Lawyer</h2>
-                <h4></h4>
-              </div>
-            </div>
-            <figcaption>
-              <p>변호사</p>
-            </figcaption>
-            <a href="#"></a>
-          </figure>
-        </div>
-        <div class="item" style="  margin-top: 15%;">
-          <span style="font-family: 'Do Hyeon', sans-serif;">분야별 전문가로 구성된, 당신의 변호사 깔끔하게 정리된 변호사 찾기</span>
-        </div>
-        <div class="item">
-          <span style="font-family: 'Do Hyeon', sans-serif;">자유게시판, 법률 TIP 통해 쉽게 접근해요</span>
-        </div>
-        <div class="item">
-          <figure class="snip1476" style="float:right;"><img src="{% static 'img/community.jpg' %}" alt="sample91" />
-            <div class="title">
-              <div>
-                <h2>Community</h2>
-                <h4></h4>
-              </div>
-            </div>
-            <figcaption>
-              <p>소통</p>
-            </figcaption>
-            <a href="#"></a>
-          </figure>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- 세번째페이지 -->
-
-    <!-- <div id="gnsubContent" class="section right-wrap print-100"> -->
-    <div class="section row">
-      <div id="container" class="sub-header col-xs-12">
-        <div class="row">
-          <div class="ending" style="margin-top: 5%;">
-            <h2 class="h2">“더 궁금하신게 있으신가요?”</h2>
-            <div class="container question-container">
-              <div class="row question-box">
-                <span class="question">Q. 로톡 서비스는 무료인가요??</span>
-                <span class="answer">A. 응, 우리는 모두가 편하게 접근하는 것을 목표로 하거든</span>
-              </div>
-              <div class="row question-box">
-                <span class="question">Q. 채팅 형식은 어때야해??</span>
-                <span class="answer">A. 어디서, 언제, 어떻게 다쳤는지 알려주면 더 좋아~</span>
-              </div>
-              <div class="row question-box">
-                <span class="question">Q. 판결문은 어떻게 볼 수 있어??</span>
-                <span class="answer">A. 간단한 대화형식을 통해 우리가 궁금한것을 모두 대답해주면 알맞는 판결문을 볼 수 있어</span>
-              </div>
-              <div class="row question-box">
-                <span class="question">Q. 음성으로도 할 수 있어?</span>
-                <span class="answer">A. 우리 로우봇은 채팅뿐만 아니라 직접 말로도 대화가 가능해!</span>
-              </div>
-            </div>
-
-          </div>
-          <div class="row message-box" style="text-align: center; margin-top:30%; margin-right:10%">
-            <a href="https://luda.ai/faq">
-              <button class="cta cta-ending">[FAQ] Law-Bot에 대해 더 알아보기 👀</button>
-            </a>
-          </div>
-
-        </div>
-
-      </div>
-    </div>
-
-    <script src="{% static '/js/home/Main.js' %}"></script>
 </body>
-
 </html>
