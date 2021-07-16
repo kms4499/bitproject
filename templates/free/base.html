@@ -48,11 +48,11 @@
             <div class="col-3">
                 <div class="list-group text-center" id="list-tab" role="tablist">
                     <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list"
-                       href="#list-home" role="tab" aria-controls="home">자유게시판</a>
+                       href="{% url 'free:index' %}" role="tab" aria-controls="home">자유게시판</a>
                     <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                       href="#list-profile" role="tab" aria-controls="profile">법률TIP</a>
+                       href="{% url 'tips:index' %}" role="tab" aria-controls="profile">법률TIP</a>
                     <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list"
-                       href="#list-messages" role="tab" aria-controls="messages">묻고 답하기</a>
+                       href="{% url 'faq:index' %}" role="tab" aria-controls="messages">묻고 답하기</a>
                     <div class="list-group-item" style="height: 48vh; width:82%"></div>
                 </div>
             </div>
