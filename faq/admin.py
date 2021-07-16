@@ -1,12 +1,12 @@
 from django.contrib import admin
-from .models import Question
+from .models import Question, Answer
 
 class QuestionAdmin(admin.ModelAdmin):
     list_display = ('author',
                     'title',
                     'content',
                     'created_date',
-                    'modify_case',
+                    'modify_date',
                     'question_case',
                     )
 
@@ -23,3 +23,5 @@ class AnswerAdmin(admin.ModelAdmin):
     )
     search_fields = ['author', 'question', 'content', 'created_date', 'modify_date', 'answer_case']
 
+admin.site.register(Question, QuestionAdmin)
+admin.site.register(Answer, AnswerAdmin)

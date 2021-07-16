@@ -1,10 +1,10 @@
 from django import forms
-from faq.models import Question, Answer
+from .models import Question, Answer
 
 class QuestionForm(forms.ModelForm):
     class Meta:
         model = Question
-        fields = ['question_case','title', 'content']
+        fields = ['title', 'content','question_case']
         labels = {
             'title':'제목',
             'content':'내용',
@@ -14,7 +14,7 @@ class QuestionForm(forms.ModelForm):
 class AnswerForm(forms.ModelForm):
     class Meta:
         model = Answer
-        fields = ['answer_case', 'content']
+        fields = ['content','answer_case']
         labels = {
             'content':'내용',
             'answer_case':'답변유형',

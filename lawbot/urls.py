@@ -25,7 +25,7 @@ urlpatterns = [
     path('free/', include('free.urls')),
     path('users/', include('users.urls')),
     path('tips/', include('tips.urls')),
-    path('faq/', include('faq.urls')),
+    path('faq/', include('faq.urls', namespace="question")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -4,12 +4,13 @@
         <!--내 정보-->
         <div class="tab-pane fade show active" id="list-home" role="tabpanel"
              aria-labelledby="list-home-list">
-            <h1>자유게시판</h1>
+            <h1>묻고 답하기</h1>
             <hr>
             <table class="table3 table-hover text-center" style="margin-left: 5%; margin-top: 10%;">
                 <thead>
                 <tr>
                     <th>번호</th>
+                    <th>질문유형</th>
                     <th style="width=:30%">제목</th>
                     <th>글쓴이</th>
                     <th>작성일시</th>
@@ -17,19 +18,19 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% if free_list %}
-                {% for free in free_list %}
+                {% if question_list %}
+                {% for question in question_list %}
                 <tr class="btn write1">
                     <td>
                         <!-- 번호 = 전체건수 - 시작인덱스 - 현재인덱스 + 1 -->
-                        {{ free_list.paginator.count|sub:free_list.start_index|sub:forloop.counter0|add:1 }}
+                        {{ question_list.paginator.count|sub:question_list.start_index|sub:forloop.counter0|add:1 }}
                     </td>
-
+                    <td>{{question.question_case}}</td>
                     <td class="text=left">
-                        <a href="{% url 'free:detail' free.id %}">{{ free.title }}</a>
+                        <a href="{% url 'faq:detail' question.id %}">{{ question.title }}</a>
                     </td>
-                    <td>{{ free.writer }}</td> <!-- 글쓴이 추가 -->
-                    <td>{{ free.create_date }}</td>
+                    <td>{{ question.author }}</td> <!-- 글쓴이 추가 -->
+                    <td>{{ question.created_date }}</td>
                 </tr>
                 {% endfor %}
                 {% else %}
@@ -42,9 +43,9 @@
             <!-- 페이징처리 시작 -->
             <ul class="pagination justify-content-center">
                 <!-- 이전페이지 -->
-                {% if free_list.has_previous %}
+                {% if question_list.has_previous %}
                 <li class="page-item">
-                    <a class="page-link" data-page="{{ free_list.previous_page_number }}" href="#">이전</a>
+                    <a class="page-link" data-page="{{ question_list.previous_page_number }}" href="#">이전</a>
                 </li>
                 {% else %}
                 <li class="page-item disabled">
@@ -53,9 +54,9 @@
                 {% endif %}
 
                 <!-- 페이지리스트 -->
-                {% for page_number in free_list.paginator.page_range %}
-                {% if page_number >= free_list.number|add:-5 and page_number <= free_list.number|add:5 %}
-                {% if page_number == free_list.number %}
+                {% for page_number in question_list.paginator.page_range %}
+                {% if page_number >= question_list.number|add:-5 and page_number <= question_list.number|add:5 %}
+                {% if page_number == question_list.number %}
                 <li class="page-item active" aria-current="page">
                     <a class="page-link"  href="?page = {{ page_number }}">{{ page_number }}</a>
                 </li>
@@ -68,9 +69,9 @@
                 {% endfor %}
 
                 <!-- 다음페이지 -->
-                {% if free_list.has_next %}
+                {% if question_list.has_next %}
                 <li class="page-item">
-                    <a class="page-link" data-page="#" href="?page={{ free_list.next_page_number }}">다음</a>
+                    <a class="page-link" data-page="#" href="?page={{ question_list.next_page_number }}">다음</a>
                 </li>
                 {% else %}
                 <li class="page-item disabled">
@@ -80,11 +81,11 @@
             </ul>
 
             <!-- 페이징처리 끝 -->
-            <a href="{% url 'free:free_create' %}" class="btn btn-primary">글쓰기</a>
+            <a href="{% url 'question:question_create' %}" class="btn btn-primary">글쓰기</a>
         </div>
 
 
-<form id="searchForm" method="get" action="{% url 'free:index' %}">
+<form id="searchForm" method="get" action="{% url 'faq:index' %}">
 
     <input type="hidden" id="kw" name="kw" value="{{ kw|default_if_none:'' }}">
     <input type="hidden" id="page" name="page" value="{{ page }}">
