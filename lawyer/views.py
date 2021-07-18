@@ -9,7 +9,7 @@ from django.contrib import messages
 
 def index(request):
     lawyer_list = Lawyer.objects.all().order_by('-id')  # 최근생성시간 순으로
-    page=request.GET.get('page', '1')
+    page = request.GET.get('page', '1')
     paginator = Paginator(lawyer_list, 10)  # 페이지당 10개씩 보여주기
     page_obj = paginator.get_page(page)
     context = {'lawyer_list':page_obj}
