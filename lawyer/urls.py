@@ -3,11 +3,15 @@ from .import views
 
 app_name = 'lawyer'
 
-urlpattterns=[
+urlpatterns=[
     path('', views.index, name='index'),
     path('<int:lawyer_id>/', views.detail, name='detail'),
 
-    # path('comment/create/lawyer/<int:lawyer_id>/', views.comment_create_lawyer),
-    # path('comment/modify/lawyer/<int:lawyer_id>/', views.comment_modify_lawyer),
-    # path('comment/delete/lawyer/<int:lawyer_id>/', views.commnet_delete_lawyer),
+    path('create/', views.lawyer_create, name='lawyer_create'),
+    path('lawyer/modify/<int:free_id>/', views.lawyer_modify, name='lawyer_modify'),
+    path('lawyer/delete/<int:free_id>/', views.lawyer_delete, name='lawyer_delete'),
+
+    path('comment/create/lawyer/<int:lawyer_id>/', views.comment_create, name='comment_create'),
+    path('comment/modify/lawyer/<int:comment_id>/', views.comment_modify, name='comment_modify'),
+    path('comment/delete/lawyer/<int:comment_id>/', views.comment_delete, name='comment_delete'),
 ]
