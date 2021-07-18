@@ -1,108 +1,78 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="Mypage_Write.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body>
+{% extends 'free/base.html' %}
+{% block content %}
+<div class="container">
+    <h5 class="my-3 border-bottom pb-2">정보등록하기</h5>
+    <br>
 
+    <form method="post" enctype="multipart/form-data" class="post-form my-3">
+        {% csrf_token %}
+        <h6>사진</h6>
+        <div class="form-group" style="width:100%">
+            <input type="file" name="'image">
+        </div>
 
-<div class="container bootstrap snippet">
-    <div class="row" style="margin-top: 10%; margin-left: 20%">
-        <div class="col-sm-3"><!--left col-->
+        <div class="form-group" style="width:100%">
+            <label for="email">이메일</label>
+            <textarea class="form-control"name="email" id="email"
+                      rows="3" style="width:80%">{{ form.email.value|default_if_none:'' }}</textarea>
+        </div>
 
+        <div class="form-group" style="width:100%">
+            <label for="title">제목</label>
+            <textarea class="form-control"name="title" id="title"
+                      rows="3" style="width:80%">{{ form.title.value|default_if_none:'' }}</textarea>
+        </div>
 
-            <div class="text-center">
-                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-thumbnail" alt="avatar">
-                <input type="file" class="text-center center-block file-upload">
-            </div></hr><br>
+        <div class="form-group" style="width:100%">
+            <label for="content">내용</label>
+            <textarea class="form-control"name="content" id="content"
+                      rows="3" style="width:80%">{{ form.content.value|default_if_none:'' }}</textarea>
+        </div>
 
+        <div class="form-group" style="width:100%">
+            <label for="company_name">회사이름</label>
+            <textarea class="form-control"name="company_name" id="company_name"
+                      rows="3" style="width:80%">{{ form.company_name.value|default_if_none:'' }}</textarea>
+        </div>
 
-        </div><!--/col-3-->
-        <div class="col-sm-9" style="margin-left:5%">
+        <div class="form-group" style="width:100%">
+            <label for="company_address">회사주소</label>
+            <textarea class="form-control"name="company_address" id="company_address"
+                      rows="3" style="width:80%">{{ form.company_address.value|default_if_none:'' }}</textarea>
+        </div>
 
-            <div class="tab-pane" id="settings">
+        <div class="form-group" style="width:100%">
+            <label for="company_phone_number">회사전화번호</label>
+            <textarea class="form-control"name="company_phone_number" id="company_phone_number"
+                      rows="3" style="width:80%">{{ form.company_phone_number.value|default_if_none:'' }}</textarea>
+        </div>
 
+        <div class="form-group" style="width:100%">
+            <label for="career">경력내용</label>
+            <textarea class="form-control"name="career" id="career"
+                      rows="3" style="width:80%">{{ form.career.value|default_if_none:'' }}</textarea>
+        </div>
 
-                <form class="form" action="##" method="post" id="registrationForm" style="width: 70%">
-                       <div class="form-group">
+        <div class="form-group" style="width:100%">
+            <label for="qualification">자격</label>
+            <textarea class="form-control"name="qualification" id="qualification"
+                      rows="3" style="width:80%">{{ form.qualification.value|default_if_none:'' }}</textarea>
+        </div>
 
-                            <strong>아이디</strong>
-                            <input type="text" class="form-control" >
-                    </div>
+        <div class="form-group" style="width:100%">
+            <label for="education">학력</label>
+            <textarea class="form-control"name="education" id="education"
+                      rows="3" style="width:80%">{{ form.company_phone_number.value|default_if_none:'' }}</textarea>
+        </div>
 
-                    <div class="form-group">
+        <div class="form-group" style="width:100%">
+            <label for="activity">활동사항</label>
+            <textarea class="form-control"name="activity" id="activity"
+                      rows="3" style="width:80%">{{ form.activity.value|default_if_none:'' }}</textarea>
+        </div>
 
-                            <strong>비밀번호</strong>
-                            <input type="password" class="form-control" id="password" name="excludeHangul" data-rule-required="true" placeholder="패스워드" maxlength="30">
-                    </div>
-                    <div class="form-group">
-
-                            <strong>비밀번호 확인</strong>
-                            <input type="password" class="form-control" id="password" name="excludeHangul" data-rule-required="true" placeholder="패스워드" maxlength="30">
-                    </div>
-
-                    <div class="form-group">
-
-                            <strong>이름</strong>
-                            <input type="text" class="form-control" name="name" id="name" placeholder="홍길동" title="enter your name if any.">
-                    </div>
-
-                    <div class="form-group">
-                            <strong>이메일</strong>
-                            <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
-                    </div>
-
-                    <div class="form-group">
-
-                            <strong>휴대전화</strong>
-                            <input type="text" class="form-control" name="phone" id="phone" placeholder="(-)을 제외한 숫자로 입력해주세요" title="enter your phone number if any.">
-                    </div>
-
-                </form>
-            </div>
-
-        </div><!--/tab-pane-->
-    </div><!--/tab-content-->
-
-</div><!--/col-9-->
-<br><br>
-<div>
- <button class="btn btn-save text-center" type="submit" style=" padding-bottom: 1%;">수정하기</button>
- <button class="btn btn-save text-center" type="submit" style=" padding-bottom: 1%;">취소</button>
+        <br>
+        <button type="submit" class="btn btn-primary">저장하기</button>
+    </form>
 </div>
-    <br><br>
-
-
-<script>
-    $(document).ready(function() {
-
-
-        var readURL = function(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $('.avatar').attr('src', e.target.result);
-                }
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-
-        $(".file-upload").on('change', function(){
-            readURL(this);
-        });
-    });
-</script>
-
-
-</body>
-</html>
+{% endblock %}

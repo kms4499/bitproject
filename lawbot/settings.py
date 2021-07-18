@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'tips',
     'faq',
     'lawyer',
-    'hitcount',
 ]
 
 MIDDLEWARE = [
