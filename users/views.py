@@ -1,16 +1,18 @@
 from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
+
+from free.models import Free
 from .decorators import *
 from .models import User
 from django.views.generic import View
 from django.contrib import messages
 
 from django.core.exceptions import PermissionDenied
-from .forms import LawRegisterForm, RegisterForm
+from .forms import LawRegisterForm, RegisterForm, CustomUserChangeForm, CheckPasswordForm, CustomPasswordChangeForm
 from django.views.generic import CreateView
 
 from .forms import LoginForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, update_session_auth_hash
 from django.contrib.auth import logout
 from django.views.generic import FormView
 from django.views.generic import TemplateView
@@ -131,3 +133,89 @@ def ajax_find_pw_view(request):
     result_pw = User.objects.get(name=name, email=email, user_id=user_id,)
 
     return HttpResponse(json.dumps({"result_pw": result_pw.password}, cls=DjangoJSONEncoder), content_type = "application/json")
+
+
+
+# 프로필 보기
+@login_message_required
+def profile_view(request):
+    if request.method == 'GET':
+        return render(request, 'users/profile.html')
+
+
+
+# 프로필 수정
+@login_message_required
+def profile_update_view(request):
+    if request.method == 'POST':
+        user_change_form = CustomUserChangeForm(request.POST, instance = request.user)
+
+        if user_change_form.is_valid():
+            user_change_form.save()
+            messages.success(request, '회원정보가 수정되었습니다.')
+            return render(request, 'users/profile.html')
+    else:
+        user_change_form = CustomUserChangeForm(instance = request.user)
+
+        return render(request, 'users/profile_update.html', {'user_change_form':user_change_form})
+
+
+
+
+
+
+# 회원탈퇴
+@login_message_required
+def profile_delete_view(request):
+    if request.method == 'POST':
+        password_form = CheckPasswordForm(request.user, request.POST)
+
+        if password_form.is_valid():
+            request.user.delete()
+            logout(request)
+            messages.success(request, "회원탈퇴가 완료되었습니다.")
+            return redirect('/home/home/')
+    else:
+        password_form = CheckPasswordForm(request.user)
+
+    return render(request, 'users/profile_delete.html', {'password_form': password_form}) #html 경로 보기
+
+
+
+
+# 비밀번호 수정
+@login_message_required
+def password_edit_view(request):
+    if request.method == 'POST':
+        password_change_form = CustomPasswordChangeForm(request.user, request.POST)
+        if password_change_form.is_valid():
+            user = password_change_form.save()
+            update_session_auth_hash(request, user)
+            # logout(request)
+            messages.success(request, "비밀번호를 성공적으로 변경하였습니다.")
+            return redirect('users:profile')
+    else:
+        password_change_form = CustomPasswordChangeForm(request.user)
+
+    return render(request, 'users/profile.html', {'password_change_form':password_change_form})
+
+
+def mypost(request):
+        blogs = Free.objects.all()
+        blog_list = blogs.filter(username=request.user.user_id) # 내가 쓴글만
+        # blog_list = Blog.objects.all().order_by('-id') # 블로그 객체 다 가져오기
+        paginator = Paginator(blog_list, 6) # 3개씩 잘라내기
+        page = request.GET.get('page') # 페이지 번호 알아오기
+        if page is None:
+                page = 1
+        else:
+                page = int(page)
+        firstPage= (page//10) * 10 +1   # 페이지 시작
+        LastPage= firstPage+10           # 페이지 끝
+        posts = paginator.get_page(page) # 페이지 번호 인자로 넘겨주기
+        count = [1,2,3]
+        if LastPage>posts.paginator.num_pages:
+                LastPage=posts.paginator.num_pages+1
+        pageRange=range(firstPage,LastPage)
+        return render(request, 'profile.html', {'blogs' :blogs, 'posts': posts, 'pageRange':pageRange, 'count':count})
+

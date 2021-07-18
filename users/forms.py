@@ -1,8 +1,10 @@
 from django import forms
 from .models import User
 from django.contrib.auth.hashers import check_password
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
+from django.contrib.auth import get_user_model
 from .choice import *
+
 
 
 def phone_number_validator(value):
@@ -26,7 +28,7 @@ class LawRegisterForm(UserCreationForm):
         self.fields['password2'].label = '비밀번호 확인'
         self.fields['password2'].widget.attrs.update({
             'class': 'form-control',
-            'placeholder': '비밀번호를 다시 입력해주세요.',
+            # 'placeholder': '비밀번호를 다시 입력해주세요.',
         })
 
         self.fields['email'].label = '이메일'
@@ -37,14 +39,14 @@ class LawRegisterForm(UserCreationForm):
         self.fields['name'].label = '이름'
         self.fields['name'].widget.attrs.update({
             'class': 'form-control',
-            'placeholder': "아이디, 비밀번호 찾기에 이용됩니다.",
+            # 'placeholder': "아이디, 비밀번호 찾기에 이용됩니다.",
         })
 
         self.fields['phone_number'].label = '핸드폰번호'
         self.fields['phone_number'].validators = [phone_number_validator]
         self.fields['phone_number'].widget.attrs.update({
             'class': 'form-control',
-            'placeholder': "'-'를 제외한 숫자로 입력해주세요",
+            # 'placeholder': "'-'를 제외한 숫자로 입력해주세요",
         })
 
         # self.fields['department'].label = '가입유형'
@@ -215,3 +217,67 @@ class RecoveryPwForm(forms.Form):
 #         self.fields['new_password2'].widget.attrs.update({
 #             'class': 'form-control',
 #         })
+
+
+# 일반회원정보 수정 폼
+class CustomUserChangeForm(UserChangeForm):
+    password = None
+    email = forms.EmailField(label='이메일', widget=forms.EmailInput(
+        attrs={'class': 'form-control', }),
+    )
+    hp = forms.IntegerField(label='연락처', widget=forms.NumberInput(
+        attrs={'class': 'form-control', 'maxlength': '11', 'oninput': "maxLengthCheck(this)", }),
+                            )
+    name = forms.CharField(label='이름', widget=forms.TextInput(
+        attrs={'class': 'form-control', 'maxlength': '8', }),
+                           )
+    birthday = forms.IntegerField(required=False, label='생일', widget=forms.NumberInput(
+        attrs={'class': 'form-control', 'maxlength': '8', 'oninput': "maxLengthCheck(this)", }),
+                                    )
+
+    class Meta:
+        model = User()
+        fields = ['hp', 'name', 'birthday', 'email']
+
+
+
+# 회원탈퇴 비밀번호확인 폼
+class CheckPasswordForm(forms.Form):
+    password = forms.CharField(label='비밀번호', widget=forms.PasswordInput(
+        attrs={'class': 'form-control', }),
+                               )
+
+    def __init__(self, user, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.user = user
+
+    def clean(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get('password')
+        confirm_password = self.user.password
+
+        if password:
+            if not check_password(password, confirm_password):
+                self.add_error('password', '비밀번호가 일치하지 않습니다.')
+
+
+
+# 비밀번호 변경 폼
+class CustomPasswordChangeForm(PasswordChangeForm):
+    def __init__(self, *args, **kwargs):
+        super(CustomPasswordChangeForm, self).__init__(*args, **kwargs)
+        self.fields['old_password'].label = '기존 비밀번호'
+        self.fields['old_password'].widget.attrs.update({
+            'class': 'form-control',
+            'autofocus': False,
+            'style': 'margin-top:-15px;'
+        })
+        self.fields['new_password1'].label = '새 비밀번호'
+        self.fields['new_password1'].widget.attrs.update({
+            'class': 'form-control',
+        })
+        self.fields['new_password2'].label = '새 비밀번호 확인'
+        self.fields['new_password2'].widget.attrs.update({
+            'class': 'form-control',
+        })
+

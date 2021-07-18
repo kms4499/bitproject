@@ -127,3 +127,23 @@ def comment_delete_free(request, comment_id):
         comment.delete()
     return redirect('free:detail', free_id=comment.title.id)
 
+
+
+def mypost(request):
+        blogs = Free.objects.all()
+        blog_list = blogs.filter(username=request.user.user_id)  # 내가 쓴글만
+        # blog_list = Blog.objects.all().order_by('-id') # 블로그 객체 다 가져오기
+        paginator = Paginator(blog_list, 6)  # 3개씩 잘라내기
+        page = request.GET.get('page')  # 페이지 번호 알아오기
+        if page is None:
+            page = 1
+        else:
+            page = int(page)
+        firstPage = (page // 10) * 10 + 1  # 페이지 시작
+        LastPage = firstPage + 10  # 페이지 끝
+        posts = paginator.get_page(page)  # 페이지 번호 인자로 넘겨주기
+        count = [1, 2, 3]
+        if LastPage > posts.paginator.num_pages:
+            LastPage = posts.paginator.num_pages + 1
+        pageRange = range(firstPage, LastPage)
+        return render(request, 'profile.html', {'blogs': blogs, 'posts': posts, 'pageRange': pageRange, 'count': count})
