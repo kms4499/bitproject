@@ -4,6 +4,7 @@ from django.core.paginator import Paginator
 from django.utils import timezone
 from .models import Question, Answer
 from .forms import QuestionForm, AnswerForm
+from users.decorators import *
 
 
 def index(request):

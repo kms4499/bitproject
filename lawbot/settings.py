@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'free',
     'tips',
     'faq',
+    'lawyer',
+    'hitcount',
 ]
 
 MIDDLEWARE = [

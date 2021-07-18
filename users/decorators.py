@@ -13,6 +13,15 @@ def login_message_required(function):
         return function(request, *args, **kwargs)
     return wrap
 
+# 비로그인 확인
+def logout_message_required(function):
+    def wrap(request, *args, **kwargs):
+        if request.user.is_authenticated:
+            messages.info(request, "접속중인 사용자입니다.")
+            return redirect('/users/main/')
+        return function(request, *args, **kwargs)
+    return wrap
+
 # 관리자 권한 확인
 def admin_required(function):
     def wrap(request, *args, **kwargs):
@@ -22,11 +31,20 @@ def admin_required(function):
         return redirect('/users/main/')
     return wrap
 
-# 비로그인 확인
-def logout_message_required(function):
+# 변호사만 가능
+def lawyer_login_required(function):
     def wrap(request, *args, **kwargs):
-        if request.user.is_authenticated:
-            messages.info(request, "접속중인 사용자입니다.")
-            return redirect('/users/main/')
-        return function(request, *args, **kwargs)
+        if request.user.level == '2' or request.user.level =='1' or request.user.level =='0':
+            return function(request, *args, **kwargs)
+        messages.info(request, "접근권한이 없습니다.")
+        return redirect('/home/home/')
+    return wrap
+
+# 일반사용자만 가능
+def common_login_required(function):
+    def wrap(request, *args, **kwargs):
+        if request.user.level == '3' or request.user.level =='1' or request.user.level =='0':
+            return function(request, *args, **kwargs)
+        messages.info(request, "접근권한이 없습니다.")
+        return redirect('/home/home/')
     return wrap
