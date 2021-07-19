@@ -8,7 +8,13 @@
         {% csrf_token %}
         <h6>사진</h6>
         <div class="form-group" style="width:100%">
-            <input type="file" name="'image">
+            <input type="file" name="img">
+        </div>
+
+        <div class="form-group" style="width:100%">
+            <label for="name">변호사 이름</label>
+            <textarea class="form-control"name="name" id="name"
+                      rows="3" style="width:80%">{{ form.name.value|default_if_none:'' }}</textarea>
         </div>
 
         <div class="form-group" style="width:100%">

@@ -2,11 +2,11 @@ from django.db import models
 from django.conf import settings
 
 class Lawyer(models.Model):
-    name = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="이름", null=True)
+    name = models.CharField(max_length=20, verbose_name="이름", null=True)
     email = models.CharField(max_length=50, verbose_name="이메일", null=True)
-    title = models.CharField(max_length=40, verbose_name="제목")
+    title = models.CharField(max_length=256, verbose_name="제목")
     content = models.TextField(verbose_name="내용")
-    company_name = models.CharField(max_length=20, verbose_name="회사이름", null=True)
+    company_name = models.CharField(max_length=256, verbose_name="회사이름", null=True)
     company_address = models.CharField(max_length=128, verbose_name="회사주소")
     company_phone_number = models.IntegerField(verbose_name="회사전화번호")
     career = models.TextField(verbose_name="경력내용", blank=True, null=True)
