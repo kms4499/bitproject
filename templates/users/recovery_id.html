@@ -1,11 +1,10 @@
 <!-- templates/users/recovery_id.html -->
-{% extend "users/user_base.html" %}
+{% extends "users/user_base.html" %}
 {% load static %}
 
 {% block mobileView %}
 <meta name="viewport" content="width=510, user-scalable=yes">
 {% endblock %}
-
 
 {% block contents %}
 <div class="container">
@@ -20,7 +19,6 @@
                     <div class="row mt-5">
                         <div class="col-12">
                             {% csrf_token %}
-
                             <!--이름-->
                             <div class="mb-4 md-form">
                                 <label name="label_name" for="{{ form_id.name.id_for_label }}"><i
@@ -79,7 +77,6 @@
                                 });
                             </script>
                             <!-- No AJAX
-
                             {% if result_id %}
                             <h5>회원님의 아이디는 <strong>{{ result_id }}</strong>입니다.</h5>
                             {% endif %} -->
@@ -90,6 +87,5 @@
         </div>
     </div>
 </div>
-
 {% endblock %}
 

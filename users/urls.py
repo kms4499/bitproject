@@ -14,6 +14,7 @@ urlpatterns = [
     path('recovery/id/find/', views.ajax_find_id_view, name='ajax_id'),
     path('recovery/pw/', views.RecoveryPwView.as_view(), name='recovery_pw'),
     path('recovery/pw/find/', views.ajax_find_pw_view, name='ajax_pw'),
+    path('recovery/pw/password_reset/', views.pw_reset_view, name='password_reset'),
     path('profile/', views.profile_view, name='profile'),
     # path('profile/post', views.profile_post_view, name='profile_post'),
     # path('profile/comment', views.profile_comment_view, name='profile_comment'),

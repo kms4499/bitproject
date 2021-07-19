@@ -1,27 +1,22 @@
 from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
-
 from free.models import Free
 from .decorators import *
 from .models import User
 from django.views.generic import View
 from django.contrib import messages
-
 from django.core.exceptions import PermissionDenied
-from .forms import LawRegisterForm, RegisterForm, CustomUserChangeForm, CheckPasswordForm, CustomPasswordChangeForm
+from .forms import LawRegisterForm, RegisterForm, CustomUserChangeForm, CheckPasswordForm, CustomSetPasswordForm, CustomPasswordChangeForm
 from django.views.generic import CreateView
-
 from .forms import LoginForm
 from django.contrib.auth import login, authenticate, update_session_auth_hash
 from django.contrib.auth import logout
 from django.views.generic import FormView
 from django.views.generic import TemplateView
-
 from .forms import RecoveryIdForm
 from django.views.generic import View
 import json
 from django.core.serializers.json import DjangoJSONEncoder
-
 from .forms import RecoveryPwForm
 
 
@@ -95,6 +90,7 @@ def logout_view(request):
 @login_message_required
 class homeview(TemplateView):
     template_name = 'home/home.html'
+    success_url = '/home/home/'
 
 # 아이디 찾기 뷰
 @method_decorator(logout_message_required, name='dispatch')
@@ -106,16 +102,17 @@ class RecoveryIdView(View):
         if request.method=='GET':
             form_id = self.recovery_id(None)
             # print(recovery_id)
-        return render(request, self.template_name, { 'form_id':form_id, })
+        return render(request, self.template_name, { 'form_id' : form_id, })
 
 # 아이디 찾기 ajax 뷰
 def ajax_find_id_view(request):
     name = request.POST.get('name')
-    email = request.POST.GET('email')
+    email = request.POST.get('email')
     result_id = User.objects.get(name=name, email=email)
 
     return HttpResponse(json.dumps({"result_id": result_id.user_id}, cls=DjangoJSONEncoder), content_type = "application/json")
 
+#비번찾기
 @method_decorator(logout_message_required, name='dispatch')
 class RecoveryPwView(View):
     template_name = 'users/recovery_pw.html'
@@ -123,17 +120,31 @@ class RecoveryPwView(View):
 
     def get(self, request):
         if request.method=='GET':
-            form = self.recovery_pw(None)
-            return render(request, self.template_name, { 'form':form, })
+            form_pw = self.recovery_pw(None)
+            return render(request, self.template_name, { 'form_pw': form_pw, })
 
 def ajax_find_pw_view(request):
     name = request.POST.get('name')
-    email = request.POST.GET('email')
-    user_id = request.POST.GET('user_id')
-    result_pw = User.objects.get(name=name, email=email, user_id=user_id,)
+    email = request.POST.get('email')
+    user_id = request.POST.get('user_id')
+    result_pw = User.objects.get(user_id=user_id, name=name, email=email)
 
     return HttpResponse(json.dumps({"result_pw": result_pw.password}, cls=DjangoJSONEncoder), content_type = "application/json")
 
+def pw_reset_view(request):
+    if request.method == 'POST':
+        reset_password_form = CustomSetPasswordForm(request.user, request.POST)
+        if reset_password_form.is_valid():
+            user = reset_password_form.save()
+            messages.success(request, "비밀번호 변경완료! 변경된 비밀번호로 로그인하세요.")
+            logout(request)
+            return redirect('users:login')
+        else:
+            logout(request)
+    else:
+        reset_password_form = CustomSetPasswordForm(request.user)
+
+    return render(request, 'users/password_reset.html', {'form': reset_password_form})
 
 
 # 프로필 보기
@@ -141,8 +152,6 @@ def ajax_find_pw_view(request):
 def profile_view(request):
     if request.method == 'GET':
         return render(request, 'users/profile.html')
-
-
 
 # 프로필 수정
 @login_message_required
@@ -160,10 +169,6 @@ def profile_update_view(request):
         return render(request, 'users/profile_update.html', {'user_change_form':user_change_form})
 
 
-
-
-
-
 # 회원탈퇴
 @login_message_required
 def profile_delete_view(request):
@@ -179,9 +184,6 @@ def profile_delete_view(request):
         password_form = CheckPasswordForm(request.user)
 
     return render(request, 'users/profile_delete.html', {'password_form': password_form}) #html 경로 보기
-
-
-
 
 # 비밀번호 수정
 @login_message_required

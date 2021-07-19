@@ -25,19 +25,19 @@
                             <!--아이디-->
                             <div class="mb-4 md-form">
                                 <label name="label_user_id" for="{{ form_pw.user_id.id_for_label }}"><i
-                                    class="fas fa-user"></i>&nbsp;&nbsp;{{ form_pw.user_id.label }}</label>
+                                    class="fas fa-user"></i>{{ form_pw.user_id.label }}</label>
                                     {{ form_pw.user_id }}
                             </div>
                             <!--이름-->
                             <div class="mb-4 md-form">
                                 <label name="label_name" for="{{ form_pw.name.id_for_label }}"><i
-                                    class="fas fa-user-edit"></i>&nbsp;&nbsp;{{ form_pw.name.label }}</label>
+                                    class="fas fa-user-edit"></i>{{ form_pw.name.label }}</label>
                                     {{ form_pw.name }}
                             </div>
                             <!--이메일-->
                             <div class="mb-4 md-form">
                                 <label name="label_email" for="{{ form_pw.email.id_for_label }}"><i
-                                        class="fas fa-envelope"></i>&nbsp;&nbsp;{{ form_pw.email.label }}</label>
+                                        class="fas fa-envelope"></i>{{ form_pw.email.label }}</label>
                                     {{ form_pw.email }}
 
                             </div>
@@ -45,23 +45,19 @@
                             <div id="div_find_pw" style="padding-top:10px;" class="row justify-content-md-center">
                                 <button id="find_pw" class="btn btn-yellow" style="opacity: 90%; font-size: 16px;" name="recovery_pw"><i class="fas fa-search"></i>&nbsp;&nbsp;비밀번호찾기</button>
                             </div>
-
-                            <div style="text-align: center; margin-top: 10px; margin-bottom: -10px;">
-                                <div id="loading"></div>
-                            </div>
-
+                            <br>
                             <div id="result_pw"></div>
 
-                            <br>
-                            <span style="color:gray; font-size: 14px;" >&middot;&nbsp;아이디를 잊으셨나요?</span>
+                            <span style="color:gray; font-size: 14px;" >&middot;아이디를 잊으셨나요?</span>
                             <a style="text-decoration:underline; color:black; font-size: 14px;" href="{% url 'users:recovery_id' %}">아이디찾기</a>
 
                             <script type="text/javascript">
                                 $(document).ready(function () {
-                                    $('#find_id').click(function () {
-                                        var name = $("#form_name").val();
-                                        var email = $("#form_email").val();
-                                        var user_id = $("#form_user_id").val():
+                                    $('#find_pw').click(function () {
+                                        $('#loading').replaceWith('<div id="loading_end" class="loading"></div>')
+                                        var user_id = $("#pw_form_id").val();
+                                        var name = $("#pw_form_name").val();
+                                        var email = $("#pw_form_email").val();
 
                                         $.ajax({
                                             type: "POST",
@@ -74,9 +70,7 @@
                                                 'csrfmiddlewaretoken': '{{csrf_token}}',
                                             },
                                             success: function (response) {
-                                                $('#result_id').replaceWith(
-                                                    '<div id="result_id"><hr><div style="text-align:center;"><span style="font-size: 16px;">입력된 정보로 가입된 아이디는 </span><span style="font-size: 20px; font-weight: bold;" id="result_id">' + response.result_id +
-                                                    '</span><span style="font-size: 16px;"> 입니다.</span></div><hr></div>')
+                                                 location.href = "password_reset";
                                             },
                                             error: function () {
                                                 if (name == "" || email == "") {
@@ -88,7 +82,6 @@
                                         });
                                     })
                                 });
-
                             </script>
                             <!-- {% if result_pw %}
                             <h5>회원님의 비밀번호는 <strong>{{ result_pw }}</strong>입니다.</h5>

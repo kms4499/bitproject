@@ -4,87 +4,87 @@
 
 
 <div class="tab-pane fade" id="list-messages" role="tabpanel"
-                         aria-labelledby="list-messages-list">
-                        <h1>화원정보 변경</h1>
-                        <hr>
-                        <div class="container bootstrap snippet" style="padding: 0; margin:0; margin-top: 5%;">
-                            <div class="row" style="margin-left: 5%; width:100%">
-                                <div class="col-sm-4" style="margin-left:37%">
-                                    <!--left col-->
+     aria-labelledby="list-messages-list">
+    <h1>화원정보 변경</h1>
+    <hr>
+    <div class="container bootstrap snippet" style="padding: 0; margin:0; margin-top: 5%;">
+        <div class="row" style="margin-left: 5%; width:100%">
+            <div class="col-sm-4" style="margin-left:37%">
+                <!--left col-->
 
 
-                                    <div class="text-center" style="width: 80%">
-                                        <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
-                                             class="avatar img-circle img-thumbnail" alt="avatar">
-                                        <input type="file" class="text-center center-block file-upload"
-                                               style="margin-top: 10%; margin-left: -10%;">
+                <div class="text-center" style="width: 80%">
+                    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
+                         class="avatar img-circle img-thumbnail" alt="avatar">
+                    <input type="file" class="text-center center-block file-upload"
+                           style="margin-top: 10%; margin-left: -10%;">
 
-                                    </div>
-                                    </hr><br>
-
-
-                                </div>
-                                <!--/col-3-->
-
-                            </div>
-                            <!--/tab-content-->
-
-                            <form method="POST">
-                                {% csrf_token %}
-                                <table class="table2" style=" margin-top: 5%; margin-left: 25%;">
-                                    <tbody>
-                                    <tr>
+                </div>
+                </hr><br>
 
 
+            </div>
+            <!--/col-3-->
 
-                                        <th style="width:30%">아이디</th>
-                                        {% if user.level == '0'%}
-                                        <td class="profile_content">&nbsp;&nbsp;{{ user.user_id }}&nbsp;&nbsp;(개발자)</td>
-                                        {% elif user.level == '1' %}
-                                        <td class="profile_content">&nbsp;&nbsp;{{ user.user_id }}&nbsp;&nbsp;(관리자)</td>
-                                        {% else %}
-                                        <td class="profile_content">&nbsp;&nbsp;{{ user.user_id }}</td>
-                                        {% endif %}
-                                        <td>
-                                    </tr>
-                                    <tr>
-                                        <th>이름</th>
-                                        <td>{{ user.name }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>비밀번호</th>
-                                        <td><button type="password" id="password" name="excludeHangul"
-                                                    data-rule-required="true" class="btn btn-info">비밀번호 변경</button></td>
-                                    </tr>
-                                    >
-                                    <tr>
-                                        <th>휴대폰번호</th>
-                                        <td><input type="text" name="phone" id="phone" value="{{user.hp}}"
-                                                   title="enter your phone number if any.">{{ user_change_form.hp }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>생년월일</th>
-                                        <td><input type="text" id="datePicker" class="form-control1 text-center"
-                                                   value="{{ user.birthday }}">{{ user_change_form.birthday }}
-                                            <!-- <a href="#" id="datePicker"> -->
-                                            <img src="{% static 'img/calendar.png' %}" style="width:5%;" id="datePicker">
-                                            <!-- </a> -->
+        </div>
+        <!--/tab-content-->
 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>이메일</th>
-                                        <td><input type="email" name="email" id="email" value="{{user.email}}">{{ user_chage_form.email }}</td>
-                                    </tr>
+        <form method="POST">
+            {% csrf_token %}
+            <table class="table2" style=" margin-top: 5%; margin-left: 25%;">
+                <tbody>
+                <tr>
 
-                                    </tbody>
-                                </table>
-                                <div style="margin-top:10%; margin-left:48%">
-                                    <button class="btn btn-primary">수정 완료</button>
-                                </div>
-                                <br>
-                            </form>
-                        </div>
 
-                    </div>
+
+                    <th style="width:30%">아이디</th>
+                    {% if user.level == '0'%}
+                    <td class="profile_content">&nbsp;&nbsp;{{ user.user_id }}&nbsp;&nbsp;(개발자)</td>
+                    {% elif user.level == '1' %}
+                    <td class="profile_content">&nbsp;&nbsp;{{ user.user_id }}&nbsp;&nbsp;(관리자)</td>
+                    {% else %}
+                    <td class="profile_content">&nbsp;&nbsp;{{ user.user_id }}</td>
+                    {% endif %}
+                    <td>
+                </tr>
+                <tr>
+                    <th>이름</th>
+                    <td>{{ user.name }}</td>
+                </tr>
+                <tr>
+                    <th>비밀번호</th>
+                    <td><button type="password" id="password" name="excludeHangul"
+                                data-rule-required="true" class="btn btn-info">비밀번호 변경</button></td>
+                </tr>
+                >
+                <tr>
+                    <th>휴대폰번호</th>
+                    <td><input type="text" name="phone" id="phone" value="{{user.hp}}"
+                               title="enter your phone number if any.">{{ user_change_form.hp }}</td>
+                </tr>
+                <tr>
+                    <th>생년월일</th>
+                    <td><input type="text" id="datePicker" class="form-control1 text-center"
+                               value="{{ user.birthday }}">{{ user_change_form.birthday }}
+                        <!-- <a href="#" id="datePicker"> -->
+                        <img src="{% static 'img/calendar.png' %}" style="width:5%;" id="datePicker">
+                        <!-- </a> -->
+
+                    </td>
+                </tr>
+                <tr>
+                    <th>이메일</th>
+                    <td><input type="email" name="email" id="email" value="{{user.email}}">{{ user_chage_form.email }}</td>
+                </tr>
+
+                </tbody>
+            </table>
+            <div style="margin-top:10%; margin-left:48%">
+                <button class="btn btn-primary">수정 완료</button>
+            </div>
+            <br>
+        </form>
+    </div>
+
+</div>
 {% endblock %}
