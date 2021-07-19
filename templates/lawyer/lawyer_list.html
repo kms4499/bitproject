@@ -62,7 +62,7 @@
             <div class="swiper-slide" type="button">
               <div class="testimonial-item" style="width: 60%;">
                 <div class="profile mt-1">
-                  <img src="{{lawyer.image.url}}" style="width: 40%; margin-bottom: 5%;">
+                  <img src="{ lawyer.img.url }" style="width: 40%; margin-bottom: 5%;">
                   <h3>{{ lawyer.title }}</h3>
                   <h4 style="margin-top: 4%;">{{lawyer.career}}<br> 경험과 경력에서 나오는 솔루션</h4>
                   <h4 style="margin-top: 15%;">{{ lawyer.company_name }}</h4>
@@ -96,7 +96,7 @@
                 {% for lawyer in lawyer_list %}
                 <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
                     <a href="#">
-                        <img src="{{ lawyer.img.url }}" class="lawicon">
+                        <img src="{lawyer.img.url }" class="lawicon">
                     </a>
                     <a href="#" class="name">{{ lawyer.name }}</br></a>
                     <p class="explanation">{{ lawyer.title }}</br>
