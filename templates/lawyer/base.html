@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>커뮤니티</title>
+    <link rel="stylesheet" href="{% static 'css/free/Community.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/free/style.css' %}" type="text/css">
+    <link rel="stylesheet" type="text/css"  href="https://st.kakaocdn.net/commerce_cs/css/20210422/h.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+<!--    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>-->
+       <link rel="stylesheet" type="text/css"  href="https://st.kakaocdn.net/commerce_cs/css/20210422/h.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+            crossorigin="anonymous"></script>
+
+
+    <script type="text/javascript" src="https://st.kakaocdn.net/commerce_cs/js/jquery-2.1.1.min.js"></script>
+
+
+<!--    문의하기-->
+   <script type="text/javascript" src="https://st.kakaocdn.net/commerce_cs/js/jquery-2.1.1.min.js"></script>
+
+<!--    글씨체-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet"
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Jua&family=Nanum+Gothic:wght@800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+</head>
+
+<!--        사이드메뉴-->
+<style>
+            .left-menu {
+  margin-top: 3px;
+}
+.sub .left .left-head h2 {
+  background: #99e23a;
+  height: 100px;
+  font-family: "Nanum Square";
+  text-align: center;
+  vertical-align: middle;
+  font-size: 27px;
+  font-weight: bold;
+  line-height: 100px;
+  color: #fff;
+}
+.sub .left .left-head h2:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.sub .left .left-menu a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-size: 100px;
+}
+.sub .left .left-menu a:hover,
+.left .left-menu a:visited,
+.left .left-menu a:focus {
+  text-decoration: none;
+}
+.sub .panel {
+  background: transparent !important;
+  margin-bottom: 0;
+  border-radius: 0 !important;
+  border: 0;
+  box-shadow: 0 0 0 0;
+}
+.sub .panel-heading {
+  border-radius: 0;
+  padding: 0;
+}
+.sub .panel-group {
+  margin: 0;
+}
+.sub .left .left-menu .depth2 > .panel {
+  margin: 0;
+  border-bottom: 1px solid #eee;
+}
+.sub .left .left-menu .depth2 .panel-heading {
+  background: transparent;
+}
+.sub .left .left-menu .depth2 .panel-heading:hover {
+  background: #edf7f6;
+}
+.sub .left .left-menu .depth2 > .panel > .panel-heading a {
+  color: #222;
+  font-size: 17px;
+  padding: 10px 20px;
+}
+.sub .left .left-menu .depth2 > .panel > .panel-heading a .fa {
+  float: right;
+  font-size: 14px;
+  margin-top: 4px;
+}
+.sub .left .left-menu .depth2 > .panel > .panel-heading a .fa:before {
+  content: "\f067";
+}
+.sub .left .left-menu .depth2 > .panel > .panel-heading.active a .fa:before {
+  content: "\f068";
+}
+.sub .left .left-menu .depth2 .panel-body {
+  background: transparent;
+  color: #222;
+  font-size: 15px;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+}
+.sub .left .left-menu .depth2 > .panel > .panel-heading.active {
+  background: #dfeaed;
+}
+.sub .left .left-menu .depth2 > .panel > .panel-heading.active .panel-title a {
+  color: #3691a6;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.sub .left .left-menu .depth3 {
+  background: #f5f6f7;
+  border: 0;
+  border-radius: 0;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+.sub .left .left-menu .depth3 .panel {
+  margin: 0;
+}
+.sub .left .left-menu .depth3 .panel .panel-heading .panel-title a {
+  color: #7d7f7e;
+  font-size: 15px;
+  padding: 6px 20px;
+}
+.sub .left .left-menu .depth3 .panel .panel-heading .panel-title a i {
+  margin-right: 5px;
+}
+.sub .left .left-menu .depth3 .panel .panel-heading.active .panel-title a {
+  color: #18978c;
+}
+a { text-decoration:none }
+        </style>
+<body>
+<nav class="navbar sticky-top" style="top:0; width: 100%; position: fixed; background-color: rgb(252, 252, 252);">
+
+    <a class="navbar-brand ml-5" href="{% url 'home' %}"
+      style="font-family: 'Nanum Pen Script', cursive; color:rgb(224, 185, 9); font-size:50px"> <img
+        src="{% static 'img/icon.png' %}" width="70" height="70" class="d-inline-block align-bottom" alt="icon">
+      LAW-BOT
+    </a>
+
+
+    <ul class="nav justify-content-end mt-3 mr-1" style="font-family: 'Jua', sans-serif;">
+      <li class="nav-item" >
+        <a class="nav-link mt-4 px-sm-3" href="{% url 'lawyer:index' %}" style="border-bottom:1px solid white; ">변호사</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link mt-4 px-sm-3" href="{% url 'free:index' %}" style="border-bottom:1px solid white; ">커뮤니티</a>
+      </li>
+      <li class="nav-item" style="width:25%">
+        <a class="nav-link mt-4 px-sm-3" href="/users/profile/" style="border-bottom:1px solid white; ">마이페이지</a>
+      </li>
+<!--    </ul>-->
+
+<!--    <ul class="nav justify-content-end mt-3" style="font-family: 'Jua', sans-serif; margin-right:5%">-->
+      <div style="float: right; width: 30%; margin:2% 2% 0 0;">
+        <button type="button" onclick="location.href = '#' " data-toggle="modal" data-target="#exampleModalCenter"
+          class="btn btn-warning" style="margin-right:3%">로그인</button>
+        <button type="button" onclick="location.href = '/users/agreement/' " class="btn btn-warning">회원가입</button>
+      </div>
+    </ul>
+  </nav>
+
+<div id="sub-wrap" class="sub" style="margin-top: 10%;">
+        <div class="container" style="white">
+            <div class="row">
+                <div class="left col-md-3 visible-md visible-lg">
+
+                    <div class="left-menu">
+
+                        <div class="panel-group depth2" id="pc_menu_accordion_3" style="text-align:center;">
+
+
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <div id="gnsubContent" class="right-wrap col-xs-12 col-md-9 print-100">
+                    <div class="row">
+                        <div id="container" class="sub-header col-xs-12">
+                            <div class="row">
+                                <div class="title-wrap col-xs-12">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="tab-content" id="nav-tabContent" style="margin-top: -20%;">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+
+        <script>
+     var deviceType = undefined;
+            var attachedFileNumber = 0;
+            var serviceKey = '111';
+            var modifyContInquiryFlag = false;
+            var compareContent = '';
+            var privacyAgreementFlag = false;
+            var privacyThirdPartyAgreementFlag = false;
+            $(document).ready(function() {
+                $('.link_before').on('click', function() {
+                    $(this).parents('.check_before').toggleClass('fold_on');
+                });
+
+                $('.link_all').on('click', function() {
+                    $(this).parents('.agree_entercs').toggleClass('fold_on');
+                    if($(this).attr('aria-expanded')) {
+                        $(this).attr('aria-expanded', 'false');
+                    } else {
+                        $(this).attr('aria-expanded', 'true');
+                    }
+                    var checkBoxId = $(this).attr('id');
+                    if(checkBoxId === 'privacyAgreement') {
+                        privacyAgreementFlag = true;
+                    } else if(checkBoxId === 'privacyThirdPartyAgreement') {
+                        privacyThirdPartyAgreementFlag = true;
+                    }
+                });
+
+                $('.link_select').on('click', function() {
+                    $(this).parents('.select_entercs').toggleClass('select_open');
+                    if($(this).attr('aria-expanded')) {
+                        $(this).attr('aria-expanded', 'false');
+                    } else {
+                        $(this).attr('aria-expanded', 'true');
+                    }
+                });
+
+                $('.inp_check').on('click', function() {
+                    if($(this).is(":checked")) {
+                        $(this).parents('.check_entercs').removeClass('fill_error');
+                    }
+                });
+
+                $('#contInquiry').on('keydown keyup click paste', function() {
+                    main.common.webContentLengthCheck($(this));
+                }).on('change', function() {
+                    modifyContInquiryFlag = true;
+                });
+
+
+
+                $(document).on('click', '.link_opt', function() {
+                    var selectedValue = $(this).children('span').text();
+                    $(this).parents('.select_entercs').children('.link_select').text(selectedValue);
+                    $(this).parents('.select_entercs').children('.link_select').append("<span class=\"ico_commercecs ico_arrow\">선택됨</span>");
+                    if($(this).parents('.select_entercs').hasClass('select_done')) {
+                    } else {
+                        $(this).parents('.select_entercs').addClass('select_done');
+                    }
+
+                    $(this).parents('.select_entercs').toggleClass('select_open');
+                    if($(this).attr('aria-expanded')) {
+                        $(this).attr('aria-expanded', 'false');
+                    } else {
+                        $(this).attr('aria-expanded', 'true');
+                    }
+
+                    var id = $(this).parents('ul') !== undefined ? $(this).parents('ul').attr('id') : undefined;
+                    if(id === 'firstCategories') {
+                        var categoryId = $(this).parents('li').attr('value');
+                        initGuideContent();
+                        if(modifyContInquiryFlag == false) {
+                            initInquiryContent();
+                        }
+                        $('#categoryId').val('');
+                        initTwoDepthCategoryBlock(deviceType);
+                        requestTwoDepthCategory(serviceKey, categoryId);
+                    } else if (id === 'secondCategories') {
+                        var categoryId = $(this).parents('li').attr('value');
+                        if(modifyContInquiryFlag == false) {
+                            initInquiryContent();
+                        }
+                        requestCategoryInfo(serviceKey, categoryId);
+                        $('#categoryId').val(categoryId);
+
+                        var categoryId = $('input[name=categoryId]').val();
+                        if(categoryId === undefined || !main.common.filter.validatePositiveNumber(categoryId)) {
+                            $("div[id$='Category']").addClass('fill_error');
+                        } else {
+                            $("div[id$='Category']").removeClass('fill_error');
+                        }
+                    } else if(id === 'countryNumbers') {
+                        var countryNumber = $(this).parents('li').attr('value');
+                        $('#countryNumber').val(countryNumber);
+                    }
+                });
+
+                $(document).on('change', '.opt_select', function() {
+                    var selectedValue = $(this).children('option:selected').val();
+                    var selectedDisplayText = $(this).children('option:selected').text();
+
+                    $(this).parents('.select_entercs').children('.link_select').text(selectedDisplayText);
+                    $(this).parents('.select_entercs').children('.link_select').append("<span class=\"ico_commercecs ico_arrow\">선택됨</span>");
+
+                    var id = $(this).attr('id');
+                    if(id === 'firstSelect') {
+                        initGuideContent();
+                        if(modifyContInquiryFlag == false) {
+                            initInquiryContent();
+                        }
+                        initTwoDepthCategoryBlock(deviceType);
+                        requestTwoDepthCategory(serviceKey, selectedValue);
+                        $('#categoryId').val('');
+
+                        if($(this).val() == "0" || $(this).val() == "") {
+                            $(this).parents('.select_entercs').removeClass('select_done');
+                            $('#lstSelect').parents('.select_entercs').removeClass('select_done').addClass('select_disabled');
+                            $('#lstSelect option').remove();
+                            $('#lstSelect').prop("disabled", true);
+                        } else if($(this).parents('.select_entercs').hasClass('select_done') == false) {
+                            $(this).parents('.select_entercs').addClass('select_done');
+                            $('#lstSelect').prop("disabled", false);
+                        }
+
+                        $('#lstSelect').parents('.select_entercs').removeClass('select_done')
+                    } else if(id === 'lstSelect') {
+                        if(modifyContInquiryFlag == false) {
+                            initInquiryContent();
+                        }
+                        requestCategoryInfo(serviceKey, selectedValue);
+                        $('#categoryId').val(selectedValue);
+
+                        if($(this).val() == "0" || $(this).val() == "") {
+                            $(this).parents('.select_entercs').removeClass('select_done');
+                        } else {
+                            $(this).parents('.select_entercs').addClass('select_done');
+                        }
+
+                        var categoryId = $('input[name=categoryId]').val();
+                        if(categoryId === undefined || !main.common.filter.validatePositiveNumber(categoryId)) {
+                            $("div[id$='Category']").addClass('fill_error');
+                        } else {
+                            $("div[id$='Category']").removeClass('fill_error');
+                        }
+                    } else if(id === 'countryCode') {
+                        $('#countryNumber').val(selectedValue);
+                    }
+                });
+
+
+
+                function requestCategoryInfo(serviceId, categoryId) {
+                    if(categoryId == "0" || categoryId == "") {
+                        return;
+                    }
+
+                    var requestUrl = "/api/request/service/" + serviceId + "/category/" + categoryId;
+                    $.when(
+                        $.ajax({
+                            url: requestUrl,
+                            success: function(result) {
+                                liTags = [];
+                                var category = undefined;
+                                if(result && result.code === 200) {
+                                    category = result.entity;
+                                }
+                                if(category) {
+                                    var templateContent = category.templateContent;
+                                    var guideContent = category.guideContent;
+                                    if(templateContent) {
+                                        if(modifyContInquiryFlag == false) {
+                                            $('#contInquiry').val(templateContent);
+                                        }
+                                        compareContent = templateContent.replace(/( |\n|\n\r)/gi, '');
+                                    }
+                                    if(guideContent) {
+                                        displayGuideContent(guideContent);
+                                    } else {
+                                        initGuideContent();
+                                    }
+                                }
+                            }
+                        })
+                    );
+                };
+
+
+
+                function initInquiryContent() {
+                    $('#contInquiry').val('');
+                };
+
+                function initGuideContent() {
+                    if($('.check_before').hasClass('hide')) {
+                    } else {
+                        $('.check_before').addClass('hide');
+                        $('.check_before').removeClass('fold_on');
+                    }
+
+                    if($('.list_before').has('li')) {
+                        $('.list_before').empty();
+                    }
+                };
+
+                function displayGuideContent(guideContent) {
+                    if($('.list_before').has('li')) {
+                        $('.list_before').empty();
+                    }
+
+                    if($('.check_before').hasClass('hide')) {
+                        $('.check_before').removeClass('hide');
+                    }
+
+                    if(guideContent) {
+                        var lines = guideContent.split('\n');
+                        if(lines) {
+                            for(var i=0;i<lines.length;i++) {
+                                var liTag = '<li>' + lines[i] + '</li>';
+                                $('.list_before').append(liTag);
+                            }
+                        }
+                    }
+                };
+            });
+</script>
+</body>
+</html>

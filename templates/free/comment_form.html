@@ -2,20 +2,20 @@
 
 {% block content %}
 <div class="col-8">
-  <div class="tab-content" id="nav-tabContent" style="margin-top: -20%;">
+  <div class="tab-content" id="nav-tabContent" style="margin-top: 20%;">
       <div class="tab-pane fade show active" id="list-home" role="tabpanel"
            aria-labelledby="list-home-list">
-    <h5 class="border-bottom pb-2">댓글등록하기</h5>
+    <h5 class="border-bottom pb-2" style="font-size:20px; font-family: 'Nanum Gothic', sans-serif;">댓글 등록하기</h5>
     <br>
     <form method="post" class="post-form my-3">
         {% csrf_token %}
         <div class="form-group" style="width:100%">
-            <label for="content">댓글내용</label>
-            <textarea class="form-control"name="content" id="content"
+            <label for="content" style="font-family: 'Nanum Gothic', sans-serif; margin-bottom:5px;">댓글내용</label>
+            <textarea class="form-control"name="content" id="content" placeholder="댓글을 입력해주세요."
                       rows="3" style="width:80%">{{ form.content.value|default_if_none:'' }}</textarea>
         </div>
         <br>
-        <button type="submit" class="btn btn-primary">저장하기</button>
+        <button type="submit" class="btn btn-primary" style="float:right">저장하기</button>
     </form>
 </div>
 {% endblock %}

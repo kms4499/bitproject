@@ -129,7 +129,7 @@
         <span>t</span>
         <br>
         <video autoplay loop muted poster="aaa" preload="bbb" style="  margin-left: 45px;width:30%">
-          <source src="{% static 'img/main_video.mp4' %}" type="video/mp4">
+          <source src="{% static 'img/main (2).mp4' %}" type="video/mp4">
         </video>
 
         <a href="#">
@@ -177,7 +177,7 @@
             <figcaption>
               <p>변호사</p>
             </figcaption>
-            <a href="#"></a>
+            <a href="{% url 'lawyer:index' %}"></a>
           </figure>
         </div>
         <div class="item" style="  margin-top: 15%;">
@@ -197,7 +197,7 @@
             <figcaption>
               <p>소통</p>
             </figcaption>
-            <a href="#"></a>
+            <a href="{% url 'free:index' %}"></a>
           </figure>
         </div>
       </div>
@@ -233,8 +233,8 @@
 
           </div>
           <div class="row message-box" style="text-align: center; margin-top:30%; margin-right:10%">
-            <a href="https://luda.ai/faq">
-              <button class="cta cta-ending">[FAQ] Law-Bot에 대해 더 알아보기 👀</button>
+            <a href="{% url 'faq:index' %}">
+              <button class="cta cta-ending">[FAQ] Law-Bot에 질문하기 👀</button>
             </a>
           </div>
 

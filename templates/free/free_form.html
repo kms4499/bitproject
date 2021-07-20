@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="container">
-    <h5 class="my-3 border-bottom pb-2">글쓰기</h5>
+    <h5 class="my-3 border-bottom pb-2" style="font-family: 'Nanum Gothic', sans-serif; font-size:30px;">글쓰기</h5>
     <form method="post" class="post-form my-3">
         {% csrf_token %}
         <!-- 오류표시 Start -->
@@ -17,14 +17,14 @@
             </div>
         {% endif %}
         <!-- 오류표시 End -->
-        <div class="form-group">
+        <div class="bundle_entercs" style="font-size:20px; font-family: 'Nanum Gothic', sans-serif;">
             <label for="title">제목</label>
-            <input type="text" class="form-control" name="title" id="title"
+            <input type="text" class="form-control" name="title" id="title" placeholder="ex) OO 변호사 믿고 맡길 수 있어요!"
                    value="{{ form.title.value|default_if_none:'' }}">
         </div>
-        <div class="form-group">
+        <div class="bundle_entercs" style="font-size:20px; font-family: 'Nanum Gothic', sans-serif;">
             <label for="content">내용</label>
-            <textarea class="form-control" name="content"
+            <textarea class="form-control" name="content" placeholder="ex) 정말 친절해요~ 이 변호사님을 믿고 맡겼더니~~"
                       id="content" rows="10">{{ form.content.value|default_if_none:'' }}</textarea>
         </div>
         <button type="submit" class="btn btn-primary">저장하기</button>

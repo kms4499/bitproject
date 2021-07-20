@@ -1,20 +1,14 @@
-{% extends 'free/base.html' %}
+{% extends 'lawyer/base.html' %}
 {% block content %}
 <div class="container">
     <h5 class="my-3 border-bottom pb-2">정보등록하기</h5>
     <br>
 
-    <form method="post" enctype="multipart/form-data" class="post-form my-3">
+    <form method="post" enctype="multipart/form-data" class="post-form my-3" style="font-family: 'Poor Story', cursive; font-size:20px;">
         {% csrf_token %}
         <h6>사진</h6>
         <div class="form-group" style="width:100%">
-            <input type="file" name="img">
-        </div>
-
-        <div class="form-group" style="width:100%">
-            <label for="name">변호사 이름</label>
-            <textarea class="form-control"name="name" id="name"
-                      rows="3" style="width:80%">{{ form.name.value|default_if_none:'' }}</textarea>
+            <input type="file" name="'image">
         </div>
 
         <div class="form-group" style="width:100%">

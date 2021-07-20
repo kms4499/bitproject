@@ -27,6 +27,8 @@ urlpatterns = [
     path('tips/', include('tips.urls')),
     path('faq/', include('faq.urls', namespace="question")),
     path('lawyer/', include('lawyer.urls')),
+    path('chatPage/', include('chatPage.urls')),
+    path('judgement/', include('judgement.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

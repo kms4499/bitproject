@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=w, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 글씨 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- 스크롤바 -->
+    <link href="https://tistory2.daumcdn.net/tistory/2533250/skin/images/jquery.mCustomScrollbar.min.css"
+          rel="stylesheet">
+
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+
+
+
+    <!-- 전체적인 틀 -->
+    <link rel="stylesheet" href="https://tistory3.daumcdn.net/tistory/2862792/skin/style.css?_T_=1607044205" />
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <style>
+        .contain {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+        }
+
+        .item {
+            background: rgb(145, 211, 59);
+        }
+
+    </style>
+    <!--<link rel="stylesheet" href="https://tistory3.daumcdn.net/tistory/2862792/skin/style.css?_T_=1607044205" />-->
+    <!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Sunflower:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+<div id="wrap" style="background-color: oldlace;">
+    <div id="sidebar"  class="col-4" >
+        <div class="blank"></div>
+        <h1>
+            <span style="font-size: 25px; font-family: 'Do Hyeon', sans-serif;">판 결 문</span>
+        </h1>
+
+        <div class="widget category" style="font-family: 'Sunflower', sans-serif;">
+            <!-- Category -->
+            <div style="text-align: center;">
+            </div>
+            <ul class="tt_category">
+
+                <div class="list-group list-group-flush text-center" id="list-tab" role="tablist" >
+                    {% for item in data.num %}
+                    <a class="list-group-item list-group-item-action " id="list-home-list" data-toggle="list" href="#list-home{{ forloop.counter }}" role="tab" aria-controls="home">{{ item }}</a>
+                    {% endfor %}
+                </div>
+
+            </ul>
+        </div>
+        <div style="text-align: center; margin-top:15px; font-size:1.3em;">
+            <a href="#">이전으로</a>
+        </div>
+
+        <div class="blank"></div>
+    </div>
+
+
+
+
+</div>
+
+<div id="content" class="col-8">
+    <div id="content-inner" style="min-height: 78em;";>
+
+        <div id="head">
+            <div class="contain" style="font-family: 'Poor Story', cursive; font-size:30px; font-color:white; width:120%;">
+                <div class="item">
+                    <h2>{{ data.button }} </h2>
+                </div>
+                <div class="item">
+                    <h2>{{ data.acc }},{{data.loc}}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="tab-content" id="nav-tabContent" style="margin-left: 15%; width: 100%;font-family: 'Poor Story', cursive; font-size:20px ; letter-spacing: 2px; word-spacing:3px">
+                {% for items in data.judge %}
+                <div class="tab-pane fade" id="list-home{{ forloop.counter }}" role="tabpanel" aria-labelledby="list-home-list">{{ items|linebreaksbr }}</div>
+                {% endfor %}
+            </div>
+
+
+            <div class="clear"></div>
+        </div> <!-- content-inner close -->
+    </div> <!-- content close -->
+</div> <!-- wrap close -->
+</div>
+
+<div id="sidebar-toggle"><i class="icon-reorder"></i></div>
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://tistory2.daumcdn.net/tistory/2533250/skin/images/common.js"></script>
+
+
+
+<script
+        src="https://tistory2.daumcdn.net/tistory/2533250/skin/images/jquery.mCustomScrollbar.concat.min.js"></script>
+<script>
+        $(document).ready(function () {
+            if ($('body').width() > "960") {
+                // 사이드바 휠 스크롤
+                $("#sidebar").mCustomScrollbar({
+                    theme: "rounded-dark",
+                    scrollInertia: 0,
+                    mouseWheelPixels: 35
+                });
+            };
+        });
+
+
+    </script>
+</body>
+
+</html>
