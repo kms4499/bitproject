@@ -179,7 +179,7 @@ def profile_delete_view(request):
             request.user.delete()
             logout(request)
             messages.success(request, "회원탈퇴가 완료되었습니다.")
-            return redirect('/home/home/')
+            return redirect('/')
     else:
         password_form = CheckPasswordForm(request.user)
 
@@ -195,11 +195,11 @@ def password_edit_view(request):
             update_session_auth_hash(request, user)
             # logout(request)
             messages.success(request, "비밀번호를 성공적으로 변경하였습니다.")
-            return redirect('users:profile')
+            return redirect('/')
     else:
         password_change_form = CustomPasswordChangeForm(request.user)
 
-    return render(request, 'users/profile.html', {'password_change_form':password_change_form})
+    return render(request, 'users:profile()', {'password_change_form':password_change_form})
 
 
 def mypost(request):

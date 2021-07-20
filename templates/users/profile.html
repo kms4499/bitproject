@@ -184,43 +184,44 @@
                             </div>
                             <!--/tab-content-->
 
-                            <form method="POST">
-                                {% csrf_token %}
-                                <table class="table2" style=" margin-top: 5%; margin-left: 25%;">
-                                    <tbody>
-                                    <tr>
+
+                            <table class="table2" style=" margin-top: 5%; margin-left: 25%;">
+                                <tbody>
+                                <tr>
 
 
 
-                                        <th style="width:30%">아이디</th>
-                                        {% if user.level == '0'%}
-                                        <td class="profile_content">&nbsp;&nbsp;{{ user.user_id }}&nbsp;&nbsp;(개발자)</td>
-                                        {% elif user.level == '1' %}
-                                        <td class="profile_content">&nbsp;&nbsp;{{ user.user_id }}&nbsp;&nbsp;(관리자)</td>
-                                        {% else %}
-                                        <td class="profile_content">&nbsp;&nbsp;{{ user.user_id }}</td>
-                                        {% endif %}
-                                        <td>
-                                    </tr>
-                                    <tr>
-                                        <th>이름</th>
-                                        <td>{{ user.name }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>비밀번호</th>
-                                        <td><a class="btn btn-info" data-toggle="modal" data-target="#PasswordChange">비밀번호 변경</a></td>
-                                    </tr>
+                                    <th style="width:30%">아이디</th>
+                                    {% if user.level == '0'%}
+                                    <td class="profile_content">&nbsp;&nbsp;{{ user.user_id }}&nbsp;&nbsp;(개발자)</td>
+                                    {% elif user.level == '1' %}
+                                    <td class="profile_content">&nbsp;&nbsp;{{ user.user_id }}&nbsp;&nbsp;(관리자)</td>
+                                    {% else %}
+                                    <td class="profile_content">&nbsp;&nbsp;{{ user.user_id }}</td>
+                                    {% endif %}
+                                    <td>
+                                </tr>
+                                <tr>
+                                    <th>이름</th>
+                                    <td>{{ user.name }}</td>
+                                </tr>
+                                <tr>
+                                    <th>비밀번호</th>
+                                    <td><a class="btn btn-info" data-toggle="modal" data-target="#PasswordChange">비밀번호 변경</a></td>
+                                </tr>
 
-                                    <div class="modal fade" id="PasswordChange" data-backdrop="static" tabindex="-1" role="dialog"
-                                         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content" style="margin:0 auto; width:55%">
-                                                <div class="modal-header" style="background-color: #FFCE50;">
-                                                    <h5 class="col-md-12 text-center" style="">비밀번호 변경</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="background-color:rgba(0, 0, 0, 0); margin:0px">
+                                <div class="modal fade" id="PasswordChange" data-backdrop="static" tabindex="-1" role="dialog"
+                                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content" style="margin:0 auto; width:55%">
+                                            <div class="modal-header" style="background-color: #FFCE50;">
+                                                <h5 class="col-md-12 text-center" style="">비밀번호 변경</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="background-color:rgba(0, 0, 0, 0); margin:0px">
 
-                                                    </button>
-                                                </div>
+                                                </button>
+                                            </div>
+                                            <form method="POST" action="{% url 'users:password_edit' %}">
+                                                {% csrf_token %}
                                                 <div class="modal-body" style="padding:2rem;margin-top:3%">
                                                     <div class="form-group">기존 비밀번호
                                                         <label for="{{ password_change_form.old_password.id_for_label }}" style="font-size: 15px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ password_change_form.old_password.label }}</label>
@@ -239,201 +240,184 @@
                                         'form-control is-invalid')
                                 </script>
                                                         {% for error in password_change_form.old_password.errors %}
-                                                        <div class="invalid-feedback" style="margin-bottom:-10px;">
-                                                            {{ error }}
-                                                        </div>
-                                                        {% endfor %}
-                                                        {% endif %}
+                                                        {{ error }}
                                                     </div>
-                                                    <div class="form-group">새 비밀번호
-                                                        <label for="{{ password_change_form.new_password1.id_for_label }}" style="font-size: 15px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ password_change_form.new_password1.label }}</label>
-                                                        <input type="password" name="label_new_password1" id="password" class="form-control1" aria-describedby="emailHelp"
-                                                               style="font-color:black;margin-left:5%">
-                                                        {{ password_change_form.new_password1 }}
-                                                        <script type="text/javascript">
+                                                    {% endfor %}
+                                                    {% endif %}
+                                                </div>
+                                                <div class="form-group">새 비밀번호
+                                                    <label for="{{ password_change_form.new_password1.id_for_label }}" style="font-size: 15px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ password_change_form.new_password1.label }}</label>
+                                                    <input type="password" name="label_new_password1" id="password" class="form-control1" aria-describedby="emailHelp"
+                                                           style="font-color:black;margin-left:5%">
+                                                    {{ password_change_form.new_password1 }}
+                                                    <script type="text/javascript">
                                     if (document.getElementsByName('new_password1')[0].value != '') {
                                         document.getElementsByName('label_new_password1')[0].setAttribute('class',
                                             'active');
                                     }
                                 </script>
-                                                        {% if password_change_form.new_password1.errors %}
-                                                        <script type="text/javascript">
+                                                    {% if password_change_form.new_password1.errors %}
+                                                    <script type="text/javascript">
                                     document.getElementsByName('new_password1')[0].setAttribute('class',
                                         'form-control is-invalid')
                                 </script>
-                                                        {% for error in password_change_form.new_password1.errors %}
-                                                        <div class="invalid-feedback" style="margin-bottom:-10px;">
-                                                            {{ error }}
-                                                        </div>
-                                                        {% endfor %}
-                                                        {% endif %}
-                                                    </div>
+                                                    {% for error in password_change_form.new_password1.errors %}
+                                                    {{ error }}
+                                                </div>
+                                                {% endfor %}
+                                                {% endif %}
+                                        </div>
 
-                                                    <div class="form-group" style="margin:0px">새 비밀번호 확인
-                                                        <label for="{{ password_change_form.new_password2.id_for_label }}" style="font-size: 15px;">&nbsp;&nbsp;{{ password_change_form.new_password2.label }}</label>
-                                                        <input type="password" name="label_new_password2" id="password" class="form-control1" aria-describedby="emailHelp"
-                                                               style="font-color:black;">
+                                        <div class="form-group" style="margin:0px">새 비밀번호 확인
+                                            <label for="{{ password_change_form.new_password2.id_for_label }}" style="font-size: 15px;">&nbsp;&nbsp;{{ password_change_form.new_password2.label }}</label>
+                                            <input type="password" name="label_new_password2" id="password" class="form-control1" aria-describedby="emailHelp"
+                                                   style="font-color:black;">
 
-                                                        {{ password_change_form.new_password2 }}
-                                                        <script type="text/javascript">
+                                            {{ password_change_form.new_password2 }}
+                                            <script type="text/javascript">
                                     if (document.getElementsByName('new_password2')[0].value != '') {
                                         document.getElementsByName('label_new_password2')[0].setAttribute('class',
                                             'active');
                                     }
                                 </script>
-                                                        {% if password_change_form.new_password2.errors %}
-                                                        <script type="text/javascript">
+                                            {% if password_change_form.new_password2.errors %}
+                                            <script type="text/javascript">
                                     document.getElementsByName('new_password2')[0].setAttribute('class',
                                         'form-control is-invalid')
                                 </script>
-                                                        {% for error in password_change_form.new_password2.errors %}
-                                                        <div style="white-space: nowrap;" class="invalid-feedback">
-                                                            {{ error }}
-                                                        </div>
-                                                        {% endfor %}
-                                                        {% endif %}
-                                                    </div>
-
-                                                    <small style="margin-left: 0px; margin-top:8px; margin-bottom: 30px;" class="form-text text-muted">
-                                                        최소 8개의 숫자와 문자 또는 특수기호를 입력해주세요.
-                                                    </small>
-                                                    <hr style="margin-top:15%">
-
-                                                    <div style="text-align: center; margin-bottom:-25px;">
-                                                        <button  class="close1 btn-sm" id="back_btn" data-dismiss="modal" aria-label="Close"><i class="fa fa-reply"></i>&nbsp;돌아가기</button >
-                                                        <button type="submit" class="btn btn-sm1" id="detail_btn"><i class="fas fa-check"></i>&nbsp;변경하기</button>
-                                                    </div>
-                                                </div>
-
-                                            </div>
+                                            {% for error in password_change_form.new_password2.errors %}
+                                            {{ error }}
                                         </div>
+                                        {% endfor %}
+                                        {% endif %}
                                     </div>
 
-                                    <tr>
-                                        <th>휴대폰번호</th>
-                                        <td><input type="text" name="phone" id="phone" value="{{user.hp}}"
-                                                   title="enter your phone number if any.">{{ user_change_form.hp }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>생년월일</th>
-                                        <td><input type="text" id="datePicker" class="form-control2 text-center"
-                                                   value="{{ user.birthday }}">{{ user_change_form.birthday }}
-                                            <!-- <a href="#" id="datePicker"> -->
-                                            <img src="{% static 'img/calendar.png' %}" style="width:5%;" id="datePicker">
-                                            <!-- </a> -->
+                                    <small style="margin-left: 0px; margin-top:8px; margin-bottom: 30px;" class="form-text text-muted">
+                                        최소 8개의 숫자와 문자 또는 특수기호를 입력해주세요.
+                                    </small>
+                                    <hr style="margin-top:15%">
 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>이메일</th>
-                                        <td><input type="email" name="email" id="email" value="{{user.email}}">{{ user_chage_form.email }}</td>
-                                    </tr>
-
-                                    </tbody>
-                                </table>
-                                <div style="margin-top:10%; margin-left:48%">
-                                    <button class="btn btn-primary">수정 완료</button>
+                                    <div style="text-align: center; margin-bottom:-25px;">
+                                        <button  class="close1 btn-sm" id="back_btn" data-dismiss="modal" aria-label="Close"><i class="fa fa-reply"></i>&nbsp;돌아가기</button >
+                                        <button type="submit" class="btn btn-sm1" id="detail_btn"><i class="fas fa-check"></i>&nbsp;변경하기</button>
+                                        <input type="hidden" name="next" value="{{ next }}">
+                                    </div>
                                 </div>
-                                <br>
-                            </form>
-                        </div>
-
-                    </div>
-
-                    <!--회원 탈퇴-->
-                    <div class="tab-pane fade" id="list-setting" role="tabpanel"
-                         aria-labelledby="list-settings-list">
-                        <article class="resume-wrapper mx-auto theme-bg-light p-4 mb-5 my-5 shadow-lg"
-                                 style="height: 98vh; ">
-
-
-                            <div class="container bootstrap snippet" style="padding: 0; margin:0; margin-top: 5%;">
-
-                                <div class="modal-body" style="margin-left: 15%;">
-                                    <div class="text-center" style="margin-bottom: 13%;">
-                                            <span style="font-size: 30px;">&#10077; 회원탈퇴 신청 전 확인 <br>후 <span
-                                                    style="color: red;">동의 체크</span>를 해주세요&#10078;</span>
-                                    </div>
-                                    <div style="margin-left: 10%;">
-                                        <strong style="margin:0 0 0 -5%">서비스 탈퇴 유의사항</strong><br>
-                                        <p style="padding-top: 2%;">1.탈퇴 이후에는 해당 계정으로 <span style="color: red;">다시
-                                                    가입할 수 <br>&nbsp;&nbsp;&nbsp;없습니다.</span></p>
-                                        <p>2.아이디에 관련된 <span style="color: red;">모든 데이터가 삭제</span>되며
-                                            <br>&nbsp;&nbsp;&nbsp;복구가 불가능합니다.</p>
-                                        <p>3.<span style="color: red;">개인정보 처리방침 제5조</span>(개인정보의 보유 및
-                                            <br>&nbsp;&nbsp;&nbsp;이용기간)에 따른 특별한 경우, 한시적으로
-                                            <br>&nbsp;&nbsp;&nbsp;개인정보를 보존합니다.
-                                        </p>
-                                        <p>4.커뮤니티에 게시한 글들은 회원탈퇴 후에도 <br>&nbsp;&nbsp;&nbsp;삭제되지 않고
-                                            유지됩니다.<br>&nbsp;&nbsp;
-                                            삭제를 원하시는 경우 반드시 <span style="color: red;">게시물을 직접
-                                                    <br>&nbsp;&nbsp;&nbsp;삭제</span>하신 후에 회원탈퇴를 진행해 주세요.</p>
-                                    </div>
-
-                                </div>
-                                <label style="float:right; margin-top:10%">
-                                    <input type="checkbox" onClick="checkDisable(this.form)">
-                                    <span style="color:#d14040f2; font-weight: bold;">유의사항 동의</span>
-                                </label>
-                                <div style="margin-top:25%; margin-left:48%">
-                                    <a class="btn btn-primary" data-toggle="modal" href="#"
-                                       data-target="#exampleModalCenter">회원 탈퇴</a>
-                                </div>
-                                <br>
-                            </div>
-                        </article>
-
-
-                        <div class="modal fade" id="exampleModalCenter" data-backdrop="static" tabindex="-1"
-                             role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <di class="modal-content">
-                                    <div class="modal-body">
-                                        <from method="POST" novalidate>
-                                            {% csrf_token %}
-                                            <div class="text-center mt-4">
-                                                <span style="font-size: 20px;">정말로 회원탈퇴를 하시겠습니까?<br>
-                                                    탈퇴를 하시려면 본인의 비밀번호를 입력하세요.</span>
-                                            </div>
-
-                                            <div class="input-group" style="width: 50%; margin-top: 8%;">
-                                                비밀번호&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <input type="password" class="form-control" id="password"
-                                                       data-rule-required="true" for="{{ password_form.password.id_for_label }}" style="border:0px; border-bottom:1px solid black;">
-                                                {{ password_form.password.label }}
-                                            </div>
-
-                                            {{ password_form.password }}
-                                            {% if password_form.password.errors %}
-                                            <script type="text/javascript">
-                                    document.getElementsByName('password')[0].setAttribute('class',
-                                        'form-control is-invalid')
-                                </script>
-                                            {% for error in password_form.password.errors %}
-                                            <div class="invalid-feedback" style="margin-bottom:-10px;">
-                                                {{ error }}
-                                            </div>
-                                            {% endfor %}
-                                            {% endif %}
-
-                                            <div class="input-group" style="margin: 0;">
-                                                <button type="button" class="close btn-success" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                    <span style="font-size: 18px;">취소</span>
-                                                </button>
-                                                <button class="btn btn-secondary" style="margin: 3% 0 0 0">확인</button>
-                                            </div>
-                                        </from>
-                                    </div>
-                                </di>
-                            </div>
+                                </form>
                         </div>
                     </div>
                 </div>
 
+                <tr>
+                    <th>휴대폰번호</th>
+                    <td><input type="text" name="phone" id="phone" value="{{user.hp}}"
+                               title="enter your phone number if any.">{{ user_change_form.hp }}</td>
+                </tr>
+                <tr>
+                    <th>생년월일</th>
+                    <td><input type="text" id="datePicker" class="form-control2 text-center"
+                               value="{{ user.birthday }}">{{ user_change_form.birthday }}
+                        <!-- <a href="#" id="datePicker"> -->
+                        <img src="{% static 'img/calendar.png' %}" style="width:5%;" id="datePicker">
+                        <!-- </a> -->
+
+                    </td>
+                </tr>
+                <tr>
+                    <th>이메일</th>
+                    <td><input type="email" name="email" id="email" value="{{user.email}}">{{ user_chage_form.email }}</td>
+                </tr>
+
+                </tbody>
+                </table>
+                <div style="margin-top:10%; margin-left:48%">
+                    <button class="btn btn-primary">수정 완료</button>
+                </div>
+                <br>
             </div>
+
+        </div>
+
+        <!--회원 탈퇴-->
+        <div class="tab-pane fade" id="list-setting" role="tabpanel"
+             aria-labelledby="list-settings-list">
+            <article class="resume-wrapper mx-auto theme-bg-light p-4 mb-5 my-5 shadow-lg"
+                     style="height: 98vh; ">
+
+
+                <div class="container bootstrap snippet" style="padding: 0; margin:0; margin-top: 5%;">
+
+                    <div class="modal-body" style="margin-left: 15%;">
+                        <div class="text-center" style="margin-bottom: 13%;">
+                                            <span style="font-size: 30px;">&#10077; 회원탈퇴 신청 전 확인 <br>후 <span
+                                                    style="color: red;">동의 체크</span>를 해주세요&#10078;</span>
+                        </div>
+                        <div style="margin-left: 10%;">
+                            <strong style="margin:0 0 0 -5%">서비스 탈퇴 유의사항</strong><br>
+                            <p style="padding-top: 2%;">1.탈퇴 이후에는 해당 계정으로 <span style="color: red;">다시
+                                                    가입할 수 <br>&nbsp;&nbsp;&nbsp;없습니다.</span></p>
+                            <p>2.아이디에 관련된 <span style="color: red;">모든 데이터가 삭제</span>되며
+                                <br>&nbsp;&nbsp;&nbsp;복구가 불가능합니다.</p>
+                            <p>3.<span style="color: red;">개인정보 처리방침 제5조</span>(개인정보의 보유 및
+                                <br>&nbsp;&nbsp;&nbsp;이용기간)에 따른 특별한 경우, 한시적으로
+                                <br>&nbsp;&nbsp;&nbsp;개인정보를 보존합니다.
+                            </p>
+                            <p>4.커뮤니티에 게시한 글들은 회원탈퇴 후에도 <br>&nbsp;&nbsp;&nbsp;삭제되지 않고
+                                유지됩니다.<br>&nbsp;&nbsp;
+                                삭제를 원하시는 경우 반드시 <span style="color: red;">게시물을 직접
+                                                    <br>&nbsp;&nbsp;&nbsp;삭제</span>하신 후에 회원탈퇴를 진행해 주세요.</p>
+                        </div>
+
+                    </div>
+                    <form method="POST" action="{% url 'home' %}">
+                        {% csrf_token %}
+                        <div class="mb-4 md-form">비밀번호
+                            <input type="password" class="form-control" name="label_password" for="{{ password_form.password.id_for_label }}"><i
+                                    class="fas fa-lock"></i>&nbsp;&nbsp;{{ password_form.password.label }}</input>
+                            {{ password_form.password }}
+                            {% if password_form.password.errors %}
+                            <script type="text/javascript">
+                                    document.getElementsByName('password')[0].setAttribute('class',
+                                        'form-control is-invalid')
+                                </script>
+                            {% for error in password_form.password.errors %}
+                            <div class="invalid-feedback" style="margin-bottom:-10px;">
+                                {{ error }}
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+
+                        </div>
+
+                        <label>
+                            <input type="checkbox" name="ck" onClick="checkDisable(this.form)">
+                            <span style="color:#d14040f2; font-weight: bold;">유의사항 동의</span>
+                        </label>
+                        <div style="margin-top:25%; margin-left:48%">
+                            <button type="submit" class="btn btn-sm" name="bt" id="detail_btn" disabled="true" ><i class="fas fa-check"></i>&nbsp;탈퇴하기</button>
+                        </div>
+                    </form>
+                    <br>
+                </div>
+            </article>
+<script type="text/javascript">
+    function checkDisable(form) {
+        if (form.ck.checked == true) {
+            form.bt.disabled = false;
+        } else {
+            form.bt.disabled = true;
+        }
+    }
+</script>
+
+
+
         </div>
     </div>
+
+</div>
+</div>
+</div>
 </div>
 
 </div>
