@@ -22,12 +22,9 @@ class Lawyer_commentAdmin(admin.ModelAdmin):
     list_display = (
         'name',
         'content',
-        'time_point',
-        'kindness_point',
-        'solution_point',
         'created_date',
     )
-    search_fields = ['name', 'content', 'time_point', 'kindness_point', 'solution_point', 'create_date']
+    search_fields = ['name', 'content', 'created_date']
 
 admin.site.register(Lawyer, LawyerAdmin)
 admin.site.register(Lawyer_comment, Lawyer_commentAdmin)

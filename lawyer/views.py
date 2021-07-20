@@ -60,8 +60,7 @@ def lawyer_delete(request, lawyer_id):
     lawyer.delete()
     return redirect('lawyer:index')
 
-
-# 댓글등록
+#댓글등록
 def comment_create(request, lawyer_id):
     lawyer = get_object_or_404(Lawyer, pk=lawyer_id)
     if request.method == "POST":

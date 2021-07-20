@@ -18,146 +18,147 @@
   <link rel="stylesheet" href="{% static '/css/home/Main.css' %}">
   <!-- 글씨폰트 -->
   <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Indie+Flower&family=Kirang+Haerang&family=Nanum+Pen+Script&display=swap"rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
 </head>
 {% endblock %}
 
 
 {% block content %}
-<!-- firstPage -->
-<div id="full-page">
-  <div class="section first">
+  <!-- firstPage -->
+  <div id="full-page">
+    <div class="section first">
 
-    <div id="table">
-      <div id="centeralign">
-        <h1>안녕하세요 로우봇입니다.</h1>
-        <p>저희 로우봇은 대화로 간편하게 판결문을 찾을 수 있는 서비스입니다.</p>
-      </div>
-    </div>
-    <div class="word thumb">
-      <span>L</span>
-      <span>a</span>
-      <span>w</span>
-      <span>-</span>
-      <span>B</span>
-      <span>o</span>
-      <span>t</span>
-      <br>
-      <video autoplay loop muted poster="aaa" preload="bbb" style="  margin-left: 45px;width:30%">
-        <source src="{% static 'img/main_video.mp4' %}" type="video/mp4">
-      </video>
-
-      <a href="#">
-        <span>the optimist lives on</span>
-      </a>
-    </div>
-
-
-    <div class="content">
-      <div class="input-group flex-nowrap">
-
-        <input placeholder="저와의 대화를 통해 고민을 해결하세요" type="text" id="chat" class="form-control text-center"
-               style="background-color:rgba( 0, 0, 0, 0 ); color: black;">
-
-        <button type="button" class="btn btn-primary">
-          <img src="{% static 'img/돋보기.png' %}" class="iconimg">
-        </button>
-        <button type="button" class="btn btn-primary">
-          <img src="{% static 'img/mic.png' %}" width=30px height=40px>
-        </button>
-      </div>
-
-
-
-    </div>
-  </div>
-
-
-
-  <!-- 두번째페이지 -->
-  <div class="section well well-lg" style="width:60%">
-    <div class="contain">
-      <div class="item" style="margin-top: 15%;">
-        <figure class="snip1477">
-          <img src="{% static 'img/lawyer.jpg' %}" alt="sample38">
-          <div class="title">
-            <div>
-              <h2>Lawyer</h2>
-              <h4></h4>
-            </div>
-          </div>
-          <figcaption>
-            <p>변호사</p>
-          </figcaption>
-          <a href="#"></a>
-        </figure>
-      </div>
-      <div class="item" style="  margin-top: 15%;">
-        <span style="font-family: 'Do Hyeon', sans-serif;">분야별 전문가로 구성된, 당신의 변호사 깔끔하게 정리된 변호사 찾기</span>
-      </div>
-      <div class="item">
-        <span style="font-family: 'Do Hyeon', sans-serif;">자유게시판, 법률 TIP 통해 쉽게 접근해요</span>
-      </div>
-      <div class="item">
-        <figure class="snip1476" style="float:right;"><img src="{% static 'img/community.jpg' %}" alt="sample91" />
-          <div class="title">
-            <div>
-              <h2>Community</h2>
-              <h4></h4>
-            </div>
-          </div>
-          <figcaption>
-            <p>소통</p>
-          </figcaption>
-          <a href="#"></a>
-        </figure>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- 세번째페이지 -->
-
-  <!-- <div id="gnsubContent" class="section right-wrap print-100"> -->
-  <div class="section row">
-    <div id="container" class="sub-header col-xs-12">
-      <div class="row">
-        <div class="ending" style="margin-top: 5%;">
-          <h2 class="h2">“더 궁금하신게 있으신가요?”</h2>
-          <div class="container question-container">
-            <div class="row question-box">
-              <span class="question">Q. 로톡 서비스는 무료인가요??</span>
-              <span class="answer">A. 응, 우리는 모두가 편하게 접근하는 것을 목표로 하거든</span>
-            </div>
-            <div class="row question-box">
-              <span class="question">Q. 채팅 형식은 어때야해??</span>
-              <span class="answer">A. 어디서, 언제, 어떻게 다쳤는지 알려주면 더 좋아~</span>
-            </div>
-            <div class="row question-box">
-              <span class="question">Q. 판결문은 어떻게 볼 수 있어??</span>
-              <span class="answer">A. 간단한 대화형식을 통해 우리가 궁금한것을 모두 대답해주면 알맞는 판결문을 볼 수 있어</span>
-            </div>
-            <div class="row question-box">
-              <span class="question">Q. 음성으로도 할 수 있어?</span>
-              <span class="answer">A. 우리 로우봇은 채팅뿐만 아니라 직접 말로도 대화가 가능해!</span>
-            </div>
-          </div>
-
+      <div id="table">
+        <div id="centeralign">
+          <h1>안녕하세요 로우봇입니다.</h1>
+          <p>저희 로우봇은 대화로 간편하게 판결문을 찾을 수 있는 서비스입니다.</p>
         </div>
-        <div class="row message-box" style="text-align: center; margin-top:30%; margin-right:10%">
-          <a href="https://luda.ai/faq">
-            <button class="cta cta-ending">[FAQ] Law-Bot에 대해 더 알아보기 👀</button>
-          </a>
+      </div>
+      <div class="word thumb">
+        <span>L</span>
+        <span>a</span>
+        <span>w</span>
+        <span>-</span>
+        <span>B</span>
+        <span>o</span>
+        <span>t</span>
+        <br>
+        <video autoplay loop muted poster="aaa" preload="bbb" style="  margin-left: 45px;width:30%">
+          <source src="{% static 'img/main_video.mp4' %}" type="video/mp4">
+        </video>
+
+        <a href="#">
+          <span>the optimist lives on</span>
+        </a>
+      </div>
+
+
+      <div class="content">
+        <div class="input-group flex-nowrap">
+
+          <input placeholder="저와의 대화를 통해 고민을 해결하세요" type="text" id="chat" class="form-control text-center"
+            style="background-color:rgba( 0, 0, 0, 0 ); color: black;">
+
+          <button type="button" class="btn btn-primary">
+            <img src="{% static 'img/돋보기.png' %}" class="iconimg">
+          </button>
+          <button type="button" class="btn btn-primary">
+            <img src="{% static 'img/mic.png' %}" width=30px height=40px>
+          </button>
+        </div>
+
+
+
+      </div>
+    </div>
+
+
+
+    <!-- 두번째페이지 -->
+    <div class="section well well-lg" style="width:60%">
+      <div class="contain">
+        <div class="item" style="margin-top: 15%;">
+          <figure class="snip1477">
+            <img src="{% static 'img/lawyer.jpg' %}" alt="sample38">
+            <div class="title">
+              <div>
+                <h2>Lawyer</h2>
+                <h4></h4>
+              </div>
+            </div>
+            <figcaption>
+              <p>변호사</p>
+            </figcaption>
+            <a href="#"></a>
+          </figure>
+        </div>
+        <div class="item" style="  margin-top: 15%;">
+          <span style="font-family: 'Do Hyeon', sans-serif;">분야별 전문가로 구성된, 당신의 변호사 깔끔하게 정리된 변호사 찾기</span>
+        </div>
+        <div class="item">
+          <span style="font-family: 'Do Hyeon', sans-serif;">자유게시판, 법률 TIP 통해 쉽게 접근해요</span>
+        </div>
+        <div class="item">
+          <figure class="snip1476" style="float:right;"><img src="{% static 'img/community.jpg' %}" alt="sample91" />
+            <div class="title">
+              <div>
+                <h2>Community</h2>
+                <h4></h4>
+              </div>
+            </div>
+            <figcaption>
+              <p>소통</p>
+            </figcaption>
+            <a href="#"></a>
+          </figure>
         </div>
       </div>
     </div>
+
+
+    <!-- 세번째페이지 -->
+
+    <!-- <div id="gnsubContent" class="section right-wrap print-100"> -->
+    <div class="section row">
+      <div id="container" class="sub-header col-xs-12">
+        <div class="row">
+          <div class="ending" style="margin-top: 5%;">
+            <h2 class="h2">“더 궁금하신게 있으신가요?”</h2>
+            <div class="container question-container">
+              <div class="row question-box">
+                <span class="question">Q. 로톡 서비스는 무료인가요??</span>
+                <span class="answer">A. 응, 우리는 모두가 편하게 접근하는 것을 목표로 하거든</span>
+              </div>
+              <div class="row question-box">
+                <span class="question">Q. 채팅 형식은 어때야해??</span>
+                <span class="answer">A. 어디서, 언제, 어떻게 다쳤는지 알려주면 더 좋아~</span>
+              </div>
+              <div class="row question-box">
+                <span class="question">Q. 판결문은 어떻게 볼 수 있어??</span>
+                <span class="answer">A. 간단한 대화형식을 통해 우리가 궁금한것을 모두 대답해주면 알맞는 판결문을 볼 수 있어</span>
+              </div>
+              <div class="row question-box">
+                <span class="question">Q. 음성으로도 할 수 있어?</span>
+                <span class="answer">A. 우리 로우봇은 채팅뿐만 아니라 직접 말로도 대화가 가능해!</span>
+              </div>
+            </div>
+
+          </div>
+          <div class="row message-box" style="text-align: center; margin-top:30%; margin-right:10%">
+            <a href="https://luda.ai/faq">
+              <button class="cta cta-ending">[FAQ] Law-Bot에 대해 더 알아보기 👀</button>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
   </div>
-</div>
 {% endblock %}
 
 {% block script %}

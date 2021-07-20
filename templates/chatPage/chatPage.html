@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>채팅페이지</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
+
+
+<script src="{% static 'js/chatPage/jquery.js'%}" type="text/javascript"></script>
+<script src="{% static 'js/chatPage/bootstrap.js'%}" type="text/javascript"></script>
+<script src="{% static 'js/chatPage/main.js'%}" type="text/javascript"></script>
+
+<link href="{% static 'css/chatPage/bootstrap.css'%}" rel="stylesheet" id="bootstrap-css">
+<link href="{% static 'css/chatPage/main.css'%}" rel="stylesheet" id="main-css">
+<script>
+    greet();
+    onClickAsEnter();
+</script>
+
+
+
+
+
+
+
+    <style>
+        body{
+            background-image:url('media/3.jpg');
+        }
+        .btn-warning {
+  color: #212529;
+  background-color: #ffc107;
+  border-color: #ffc107;
+  border-radius: 12px;
+  /* font-family: "Nanum Pen Script", cursive; */
+}
+.btn-warning:hover {
+  color: #212529;
+  background-color: #e0a800;
+  border-color: #d39e00;
+}
+.btn-warning.focus,
+.btn-warning:focus {
+  color: #212529;
+  background-color: #e0a800;
+  border-color: #d39e00;
+  box-shadow: 0 0 0 0.2rem rgba(222, 170, 12, 0.5);
+}
+.btn-warning.disabled,
+.btn-warning:disabled {
+  color: #212529;
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+.btn-warning:not(:disabled):not(.disabled).active,
+.btn-warning:not(:disabled):not(.disabled):active,
+.show > .btn-warning.dropdown-toggle {
+  color: #212529;
+  background-color: #d39e00;
+  border-color: #c69500;
+}
+.btn-warning:not(:disabled):not(.disabled).active:focus,
+.btn-warning:not(:disabled):not(.disabled):active:focus,
+.show > .btn-warning.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(222, 170, 12, 0.5);
+}
+        .navbar-brand {
+  display: inline-block;
+  padding-top: 0.3125rem;
+  padding-bottom: 0.3125rem;
+  margin-right: 1rem;
+  font-size: 2.5rem;
+  line-height: inherit;
+  white-space: nowrap;
+  font-family: Source Code Pro;
+}
+    </style>
+</head>
+<body>
+    <a class="navbar-brand ml-5" href="#"
+    style="font-family: 'Nanum Pen Script', cursive; color:rgb(224, 185, 9); font-size:50px"> <img
+      src="media/icon.png" width="70" height="70" class="d-inline-block align-bottom" alt="icon">
+    LAW-BOT
+  </a>
+
+  
+
+
+
+<div class="chat_window" style="z-index: 1;">
+  <div class="top_menu">
+      <div class="buttons">
+          <div class="button close_button"></div>
+          <div class="button minimize"></div>
+          <div class="button maximize"></div>
+      </div>
+      <div class="title">Kochat 데모</div>
+  </div>
+  <ul class="messages"></ul>
+  <div class="bottom_wrapper clearfix">
+      <div class="message_input_wrapper">
+          <input class="message_input"
+                 onkeyup="return onClickAsEnter(event)"
+                 placeholder="내용을 입력하세요."/>
+      </div>
+
+      <div class="send_message"
+           id="send_message"
+           onclick="onSendButtonClicked()">
+
+          <div class="icon"></div>
+          <div class="text">보내기</div>
+      </div>
+
+  </div>
+</div>
+<div class="message_template">
+  <li class="message">
+      <div class="avatar">
+      <img src="static/image/icon.png" width="60" height="60">
+      </div>
+      <div class="name">로봇 </div>
+      <div class="text_wrapper">
+          <div class="text"></div>
+      </div>
+  </li>
+</div>
+</body>
+</html>

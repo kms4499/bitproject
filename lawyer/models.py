@@ -27,9 +27,6 @@ class Lawyer(models.Model):
 class Lawyer_comment(models.Model):
     name = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="이름", null=True)
     content = models.TextField(verbose_name="후기내용")
-    time_point = models.IntegerField()
-    kindness_point = models.IntegerField()
-    solution_point = models.IntegerField()
     created_date = models.DateTimeField(null=True, blank=True, verbose_name="후기작성일")
 
     def __str__(self):
