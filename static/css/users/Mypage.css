@@ -2601,6 +2601,8 @@ fieldset:disabled a.btn {
   color: #212529;
   background-color: #ffc107;
   border-color: #ffc107;
+  border-radius: 12px;
+  /* font-family: "Nanum Pen Script", cursive; */
 }
 .btn-warning:hover {
   color: #212529;
@@ -9716,10 +9718,10 @@ a.text-dark:hover {
 }
 
 .side {
-  position: sticky;
+  position: relative;
   width: 100%;
   height: 10vh;
-  top: 5%;
+  top: 11%;
 }
 
 .resume-wrapper {

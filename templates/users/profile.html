@@ -1,12 +1,14 @@
-<!DOCTYPE html>
-<html lang="ko">
+{% extends 'home/main_base.html' %}
 {% load static %}
+
+{% block head %}
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>커뮤니티</title>
     <link rel="stylesheet" href="{% static '/css/users/Mypage.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/users/checkbox_delete.css' %}" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>
@@ -34,13 +36,14 @@
     <script src="{% static '/js/users/bootstrap-datepicker.ko.min.js' %}"></script>
 
 </head>
+{% endblock %}
 
-<body>
+{% block content %}
 <div id="sub-wrap" class="sub">
-    <div class="container" style="margin: 5% 0 20% 10%;">
+    <div class="container" style="margin: 5% 0 10% 10%;">
 
         <div class="row">
-            <div class="col-3 side" style="margin-top: 10%;">
+            <div class="col-3 side" style="margin-top: 0%;">
 
                 <div class="card " style="width: 17rem; box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;">
                     <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
@@ -104,37 +107,94 @@
                         <hr>
 
                         <table class="table3 table-hover text-center" style="margin-left: 5%; margin-top: 10%;">
-                            <thead>
-                            <tr>
-                                <th>번호</th>
-                                <th style="width=:30%">제목</th>
-                                <th>글쓴이</th>
-                                <th>작성일시</th>
-                                <th>조회수</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% if blog_list %}
-                            {% for free in blog_list %}
-                            <tr class="btn write1">
-                                <td>
-                                    <!-- 번호 = 전체건수 - 시작인덱스 - 현재인덱스 + 1 -->
-                                    {{ blogs.blog_list }}
-                                </td>
+                             <thead>
+                                    <tr>
+                                        <th scope="col">번호</th>
+                                        <th scope="col" style="width: 40%;">제목</th>
+                                        <th scope="col">등록일</th>
+                                        <th scope="col">조회수</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="btn write1">
+                                        <th scope="row">1</th>
+                                        <td>최지원 변호사 정말 친절해요</td>
+                                        <td>2020-01-01</td>
+                                        <td>21</td>
+                                    </tr>
+                                    <tr class="btn write1">
+                                        <th scope="row">2</th>
+                                        <td>Jacob</td>
+                                        <td>@fat</td>
+                                        <td>15</td>
+                                    </tr>
+                                    <tr class="btn write1">
+                                        <th scope="row">3</th>
+                                        <td>Larry the Bird</td>
+                                        <td>5</td>
+                                        <td>15</td>
+                                    </tr>
+                                    <tr class="btn write1">
+                                        <th scope="row">4</th>
+                                        <td>Larry the Bird</td>
+                                        <td>5</td>
+                                        <td>15</td>
+                                    </tr>
+                                    <tr class="btn write1">
+                                        <th scope="row">5</th>
+                                        <td>Larry the Bird</td>
+                                        <td>5</td>
+                                        <td>15</td>
+                                    </tr>
+                                    <tr class="btn write1">
+                                        <th scope="row">6</th>
+                                        <td>Larry the Bird</td>
+                                        <td>5</td>
+                                        <td>15</td>
+                                    </tr>
+                                    </tr>
+                                    <tr class="btn write1">
+                                        <th scope="row">7</th>
+                                        <td>Larry the Bird</td>
+                                        <td>5</td>
+                                        <td>15</td>
+                                        </button>
+                                    </tr>
+                                    </tr>
 
-                                <td class="text=left">
-                                    <a href="{% url 'free:detail' free.id %}">{{ free.title }}</a>
-                                </td>
-                                <td>{{ free.writer }}</td> <!-- 글쓴이 추가 -->
-                                <td>{{ free.create_date }}</td>
-                            </tr>
-                            {% endfor %}
-                            {% else %}
-                            <tr>
-                                <td colspan="3">해당 게시글이 존재하지 않습니다.</td>
-                            </tr>
-                            {% endif %}
-                            </tbody>
+                                </tbody>
+
+<!--                            <thead>-->
+<!--                            <tr>-->
+<!--                                <th>번호</th>-->
+<!--                                <th style="width=:30%">제목</th>-->
+<!--                                <th>글쓴이</th>-->
+<!--                                <th>작성일시</th>-->
+<!--                                <th>조회수</th>-->
+<!--                            </tr>-->
+<!--                            </thead>-->
+<!--                            <tbody>-->
+<!--                            {% if blog_list %}-->
+<!--                            {% for free in blog_list %}-->
+<!--                            <tr class="btn write1">-->
+<!--                                <td>-->
+<!--                                    &lt;!&ndash; 번호 = 전체건수 - 시작인덱스 - 현재인덱스 + 1 &ndash;&gt;-->
+<!--                                    {{ blogs.blog_list }}-->
+<!--                                </td>-->
+
+<!--                                <td class="text=left">-->
+<!--                                    <a href="{% url 'free:detail' free.id %}">{{ free.title }}</a>-->
+<!--                                </td>-->
+<!--                                <td>{{ free.writer }}</td> &lt;!&ndash; 글쓴이 추가 &ndash;&gt;-->
+<!--                                <td>{{ free.create_date }}</td>-->
+<!--                            </tr>-->
+<!--                            {% endfor %}-->
+<!--                            {% else %}-->
+<!--                            <tr>-->
+<!--                                <td colspan="3">해당 게시글이 존재하지 않습니다.</td>-->
+<!--                            </tr>-->
+<!--                            {% endif %}-->
+<!--                            </tbody>-->
                         </table>
 
                         <nav aria-label="Page navigation example">
@@ -163,8 +223,8 @@
                         <h1>화원정보 변경</h1>
                         <hr>
                         <div class="container bootstrap snippet" style="padding: 0; margin:0; margin-top: 5%;">
-<!--                            <form method="POST" novalidate>-->
-<!--                                                {% csrf_token %}-->
+                            <!--                            <form method="POST" novalidate>-->
+                            <!--                                                {% csrf_token %}-->
                             <div class="row" style="margin-left: 5%; width:100%">
                                 <div class="col-sm-4" style="margin-left:37%">
                                     <!--left col-->
@@ -241,7 +301,7 @@
                                                     </div>
                                                     <div class="form-group">새 비밀번호
                                                         <label for="{{ password_change_form.new_password1.id_for_label }}" style="font-size: 15px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ password_change_form.new_password1.label }}</label>
-                                                        <input type="password" name="label_new_password1" id="password" class="form-control1" aria-describedby="emailHelp"
+                                                        <input type="password" name="label_new_password1" class="form-control1" aria-describedby="emailHelp"
                                                                style="font-color:black;margin-left:5%">
                                                         {{ password_change_form.new_password1 }}
                                                         <script type="text/javascript">
@@ -263,7 +323,7 @@
 
                                                     <div class="form-group" style="margin:0px">새 비밀번호 확인
                                                         <label for="{{ password_change_form.new_password2.id_for_label }}" style="font-size: 15px;">&nbsp;&nbsp;{{ password_change_form.new_password2.label }}</label>
-                                                        <input type="password" name="label_new_password2" id="password" class="form-control1" aria-describedby="emailHelp"
+                                                        <input type="password" name="label_new_password2" class="form-control1" aria-describedby="emailHelp"
                                                                style="font-color:black;">
 
                                                         {{ password_change_form.new_password2 }}
@@ -384,7 +444,7 @@
                                         <span style="color:#d14040f2; font-weight: bold;">유의사항 동의</span>
                                     </label>
                                     <div style="margin-top:25%; margin-left:48%">
-                                        <button type="submit" class="btn btn-sm" name="bt" id="detail_btn" disabled="true" ><i class="fas fa-check"></i>&nbsp;탈퇴하기</button>
+                                        <button type="submit" class="btn btn-sm" name="bt" disabled="true" ><i class="fas fa-check"></i>&nbsp;탈퇴하기</button>
                                     </div>
                                 </form>
                                 <br>
@@ -408,13 +468,8 @@
         </div>
     </div>
 </div>
-</div>
+{% endblock %}
 
-</div>
-
+{% block script %}
 <script src="{% static '/js/users/Mypage.js' %}"></script>
-
-</body>
-
-
-</html>
+{% endblock %}

@@ -166,7 +166,7 @@ def profile_update_view(request):
     else:
         user_change_form = CustomUserChangeForm(instance = request.user)
 
-        return render(request, 'users/profile.html', {'user_change_form':user_change_form})
+    return render(request, 'users/profile.html', {'user_change_form':user_change_form})
 
 
 # 회원탈퇴

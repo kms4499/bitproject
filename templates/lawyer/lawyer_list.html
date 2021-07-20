@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+{% extends 'home/main_base.html' %}
 {% load static %}
-<html lang="en" xmlns="http://www.w3.org/1999/html">
 
+{% block head %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,137 +9,140 @@
     <title>Title</title>
 
     <link rel="stylesheet" href="{% static '/css/lawyer/Lawyer.css' %}" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script> -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
 
-      <link href="{% static '/css/lawyer/swiper-bundle.min.css' %}" rel="stylesheet">
-  <link href="{% static '/css/lawyer/style.css' %}" rel="stylesheet">
+    <link href="{% static '/css/lawyer/swiper-bundle.min.css' %}" rel="stylesheet">
+    <link href="{% static '/css/lawyer/style.css' %}" rel="stylesheet">
 </head>
+{% endblock %}
 
-<body>
-    <div class="text-center" style="font-size: 60px; margin-top: 10%;">변호사 찾기</div>
-    </br><br>
-    <!-- <div class="content mt-5">
-        <div class="input-group flex-nowrap mt-2">
+{% block content %}
+<div class="text-center" style="font-size: 60px; margin-top: 10%;">변호사 찾기</div>
+</br><br>
+<!-- <div class="content mt-5">
+    <div class="input-group flex-nowrap mt-2">
 
-            <input placeholder="분야/사례/변호사 검색" type="text" id="chat" class="form-control text-center"
-                style="background-color:rgba( 0, 0, 0, 0)">
-            <button type="button" class="btn btn-primary">
-                <img src="media/돋보기.jpg" class="iconimg">
-            </button>
+        <input placeholder="분야/사례/변호사 검색" type="text" id="chat" class="form-control text-center"
+            style="background-color:rgba( 0, 0, 0, 0)">
+        <button type="button" class="btn btn-primary">
+            <img src="media/돋보기.jpg" class="iconimg">
+        </button>
 
-        </div>
-    </div> -->
-    </br>
-    <div class="content" style="margin-top: 10%;">
-        <div class="input-group flex-nowrap mt-5">
-
-            <input placeholder="분야/변호사 검색" type="text" id="chat" class="form-control text-center"
-                style="background-color:rgba( 0, 0, 0, 0)">
-            <button type="button" class="btn btn-primary">
-                <img src="{% static 'media/돋보기.jpg' %}" class="iconimg">
-            </button>
-
-        </div>
     </div>
-    <br>
-    <nav id="navbar" class="navbar">
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav>
+</div> -->
+</br>
+<div class="content" style="margin-top: 10%;">
+    <div class="input-group flex-nowrap mt-5">
 
-      <section id="testimonials" class="testimonials" style="margin-top: -5%;">
-      <div class="container" data-aos="fade-up">
+        <input placeholder="분야/변호사 검색" type="text" id="chat" class="form-control text-center"
+               style="background-color:rgba( 0, 0, 0, 0)">
+        <button type="button" class="btn btn-primary">
+            <img src="{% static 'media/돋보기.jpg' %}" class="iconimg">
+        </button>
+
+    </div>
+</div>
+<br>
+<nav id="navbar" class="navbar">
+    <i class="bi bi-list mobile-nav-toggle"></i>
+</nav>
+
+<section id="testimonials" class="testimonials" style="margin-top: -5%;">
+    <div class="container" data-aos="fade-up">
         <div class="testimonials-slider swiper-container" data-aos="fade-up" data-aos-delay="200">
-          <div class="swiper-wrapper">
-            {% for lawyer in lawyer_list %}
-            <div class="swiper-slide" type="button">
-              <div class="testimonial-item" style="width: 60%;">
-                <div class="profile mt-1">
-                  <img src="{ lawyer.img.url }" style="width: 40%; margin-bottom: 5%;">
-                  <h3>{{ lawyer.title }}</h3>
-                  <h4 style="margin-top: 4%;">{{lawyer.career}}<br> 경험과 경력에서 나오는 솔루션</h4>
-                  <h4 style="margin-top: 15%;">{{ lawyer.company_name }}</h4>
-                </div>
-              </div>
-            </div><!-- End testimonial item -->
-            {% endfor %}
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-      </div>
-    </section>
-
-
-    <div class="row" style="margin-top: 5%">
-        <div class="col-4" style="margin-left: 10%;">
-            <div class="list-group list-group-flush text-center side" id="list-tab" role="tablist">
-                <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list"
-                    href="#list-home" role="tab" aria-controls="home">전체</a>
-                <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                    href="#list-profile" role="tab" aria-controls="profile">경력높은 순</a>
-                <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list"
-                    href="#list-messages" role="tab" aria-controls="messages">평가높은 순</a>
-                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list"
-                    href="#list-settings" role="tab" aria-controls="settings">리뷰많은 순</a>
-            </div>
-        </div>
-        <div class="vi"></div>
-        <div class="col-8">
-            <div class="tab-content" id="nav-tabContent" style="margin-left: 8%; width: 70%">
+            <div class="swiper-wrapper">
                 {% for lawyer in lawyer_list %}
-                <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
-                    <a href="#">
-                        <img src="{lawyer.img.url }" class="lawicon">
-                    </a>
-                    <a href="#" class="name">{{ lawyer.name }}</br></a>
-                    <p class="explanation">{{ lawyer.title }}</br>
-                        <img src="media/star.jpg" class="align-self-center mr-1 mb-1" style="width: 5%">4.3 (관련 후기
-                        32개)</br>
-                        <a href="#" class="number">{{ lawyer.company_phone_number }}</a>
-                    </p>
-                    <a href="{% url 'lawyer:detail' lawyer.id %}" style="float: right">자세히 보기</a>
-                    </br>
-                    <hr>
-                    </br>
-                </div>
+                <div class="swiper-slide" type="button">
+                    <div class="testimonial-item" style="width: 60%;">
+                        <div class="profile mt-1">
+                            <img src="{ lawyer.img.url }" style="width: 40%; margin-bottom: 5%;">
+                            <h3>{{ lawyer.title }}</h3>
+                            <h4 style="margin-top: 4%;">{{lawyer.career}}<br> 경험과 경력에서 나오는 솔루션</h4>
+                            <h4 style="margin-top: 15%;">{{ lawyer.company_name }}</h4>
+                        </div>
+                    </div>
+                </div><!-- End testimonial item -->
                 {% endfor %}
             </div>
-    <div>
-        <a href="{% url 'lawyer:lawyer_create' %}"  lass="small"><small>변호사 정보 입력하기</small></a>
+            <div class="swiper-pagination"></div>
+        </div>
     </div>
+</section>
 
 
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center" style="margin-left: -5%;">
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
+<div class="row" style="margin-top: 5%">
+    <div class="col-4" style="margin-left: 10%;">
+        <div class="list-group list-group-flush text-center side" id="list-tab" role="tablist">
+            <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list"
+               href="#list-home" role="tab" aria-controls="home">전체</a>
+            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
+               href="#list-profile" role="tab" aria-controls="profile">경력높은 순</a>
+            <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list"
+               href="#list-messages" role="tab" aria-controls="messages">평가높은 순</a>
+            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list"
+               href="#list-settings" role="tab" aria-controls="settings">리뷰많은 순</a>
+        </div>
+    </div>
+    <div class="vi"></div>
+    <div class="col-8">
+        <div class="tab-content" id="nav-tabContent" style="margin-left: 8%; width: 70%">
+            {% for lawyer in lawyer_list %}
+            <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+                <a href="#">
+                    <img src="{lawyer.img.url }" class="lawicon">
                 </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    </br>
-    </div>
-    </div>
+                <a href="#" class="name">{{ lawyer.name }}</br></a>
+                <p class="explanation">{{ lawyer.title }}</br>
+                    <img src="media/star.jpg" class="align-self-center mr-1 mb-1" style="width: 5%">4.3 (관련 후기
+                    32개)</br>
+                    <a href="#" class="number">{{ lawyer.company_phone_number }}</a>
+                </p>
+                <a href="{% url 'lawyer:detail' lawyer.id %}" style="float: right">자세히 보기</a>
+                </br>
+                <hr>
+                </br>
+            </div>
+            {% endfor %}
+        </div>
+        <div>
+            <a href="{% url 'lawyer:lawyer_create' %}"  lass="small"><small>변호사 정보 입력하기</small></a>
+        </div>
 
-   <script src="{% static 'js/lawyer/aos.js' %}"></script>
-  <script src="{% static 'js/lawyer/swiper-bundle.min.js' %}"></script>
-  <script src="{% static 'js/lawyer/glightbox.min.js' %}"></script>
-  <script src="{% static 'js/lawyer/main.js' %}"></script>
-</body>
-</html>
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center" style="margin-left: -5%;">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        </br>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/lawyer/aos.js' %}"></script>
+<script src="{% static 'js/lawyer/swiper-bundle.min.js' %}"></script>
+<script src="{% static 'js/lawyer/glightbox.min.js' %}"></script>
+<script src="{% static 'js/lawyer/main.js' %}"></script>
+{% endblock %}
