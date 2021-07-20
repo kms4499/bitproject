@@ -4,8 +4,8 @@ from .import views
 app_name = 'free'
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('<int:free_id>/', views.detail, name='detail'),
+    path('', views.index, name='index'), # 8000/free/
+    path('<int:free_id>/', views.detail, name='detail'), #8000/free/1/
 
     path('create/', views.free_create, name='free_create'),
     path('free/modify/<int:free_id>/', views.free_modify, name='free_modify'),

@@ -132,7 +132,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # User Login
 LOGIN_URL = '/users/login/'
-LOGIN_REDIRECT_URL = '/users/main/'
+LOGIN_REDIRECT_URL = '/home/'
 LOGOUT_REDIRECT_URL = '/'
 AUTH_USER_MODEL = "users.User"
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True

@@ -5,10 +5,11 @@ from .models import Lawyer, Lawyer_comment
 class LawyerForm(forms.ModelForm):
     class Meta:
         model = Lawyer
-        fields = ['img', 'email', 'title', 'content', 'company_name', 'company_address', 'company_phone_number',
+        fields = ['img', 'name', 'email', 'title', 'content', 'company_name', 'company_address', 'company_phone_number',
                   'career', 'qualification', 'education', 'activity']
         labels = {
             'img' : '사진',
+            'name' : '이름',
             'email' : '이메일',
             'title' : '제목',
             'content' : '내용',

@@ -26,6 +26,7 @@ def lawyer_create(request):
         form = LawyerForm(request.POST, request.FILES)
         if form.is_valid():
             lawyer = form.save(commit=False)
+            lawyer.name = request.user
             lawyer.save()
             return redirect('lawyer:index')
     else:

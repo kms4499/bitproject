@@ -68,7 +68,7 @@ class RegisterView(LawRegisterView):
 class LoginView(FormView):
     template_name = 'users/login.html'
     form_class = LoginForm
-    success_url = '/users/home/'
+    success_url = '/'
 
     def form_valid(self, form):
         user_id = form.cleaned_data.get("user_id")
