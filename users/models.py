@@ -4,7 +4,7 @@ from .choice import *
 
 class UserManager(BaseUserManager):
 
-    def create_user(self, user_id, password, email, phone_number, name, department, auth, **extra_fields):
+    def create_user(self, user_id, password, email, phone_number, name, department, auth, birthday, **extra_fields):
         if not user_id:
             raise ValueError('user_id Required!')
 
@@ -16,6 +16,7 @@ class UserManager(BaseUserManager):
             name=name,
             department=department,
             auth=auth,
+            birthday=birthday,
             **extra_fields
         )
         user.set_password(password)
@@ -44,6 +45,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     department = models.CharField(choices=DEPARTMENT_CHOICES, max_length=24, verbose_name="가입유형", null=True)
     auth = models.CharField(max_length=10, verbose_name="인증번호", null=True)
     date_joined = models.DateTimeField(auto_now_add=True, verbose_name='가입일', null=True, blank=True)
+    birthday = models.IntegerField(verbose_name='생일', null=True)
 
 
     is_active = models.BooleanField(default=True)

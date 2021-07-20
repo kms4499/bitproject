@@ -166,7 +166,7 @@ def profile_update_view(request):
     else:
         user_change_form = CustomUserChangeForm(instance = request.user)
 
-        return render(request, 'users/profile_update.html', {'user_change_form':user_change_form})
+        return render(request, 'users/profile.html', {'user_change_form':user_change_form})
 
 
 # 회원탈퇴
@@ -199,7 +199,7 @@ def password_edit_view(request):
     else:
         password_change_form = CustomPasswordChangeForm(request.user)
 
-    return render(request, 'users:profile()', {'password_change_form':password_change_form})
+    return render(request, 'users/profile.html', {'password_change_form':password_change_form})
 
 
 def mypost(request):
