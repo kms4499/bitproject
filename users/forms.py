@@ -214,19 +214,16 @@ class CustomUserChangeForm(UserChangeForm):
     email = forms.EmailField(label='이메일', widget=forms.EmailInput(
         attrs={'class': 'form-control', }),
     )
-    hp = forms.IntegerField(label='연락처', widget=forms.NumberInput(
+    phone_number = forms.IntegerField(label='연락처', widget=forms.NumberInput(
         attrs={'class': 'form-control', 'maxlength': '11', 'oninput': "maxLengthCheck(this)", }),
                             )
-    name = forms.CharField(label='이름', widget=forms.TextInput(
-        attrs={'class': 'form-control', 'maxlength': '8', }),
-                           )
-    birthday = forms.IntegerField(required=False, label='생일', widget=forms.NumberInput(
+    birthday = forms.IntegerField(label='생일', widget=forms.NumberInput(
         attrs={'class': 'form-control', 'maxlength': '8', 'oninput': "maxLengthCheck(this)", }),
                                     )
 
     class Meta:
         model = User()
-        fields = ['hp', 'name', 'birthday', 'email']
+        fields = ['phone_number', 'birthday', 'email']
 
 
 
